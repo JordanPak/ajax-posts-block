@@ -21,8 +21,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Get autoloader and helper functions.
-// require_once __DIR__ . '/vendor/autoload.php';
-// require_once __DIR__ . '/src/functions.php';
+require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/src/functions.php';
 
 /**
  * Plugin wrapper
@@ -40,12 +40,12 @@ class Plugin {
 	protected static $instance;
 
 	/**
-	 * Schedules handler
+	 * Blocks handler
 	 *
 	 * @since 1.0.0
-	 * @var   Schedules
+	 * @var   Blocks
 	 */
-	public $schedules;
+	public $blocks;
 
 	/**
 	 * Get main plugin instance.
@@ -73,8 +73,8 @@ class Plugin {
 		$this->set_constants();
 		add_action( 'plugins_loaded', [ $this, 'init' ] );
 		add_action( 'ajax_posts_block_activate', [ $this, 'init' ], 5 );
-		add_action( 'ajax_posts_block_activate', 'flush_rewrite_rules' );
-		add_action( 'ajax_posts_block_deactivate', 'flush_rewrite_rules' );
+		add_action( 'ajax_posts_block_activate', 'flush_rewrite_rules' ); // @todo probably not needed.
+		add_action( 'ajax_posts_block_deactivate', 'flush_rewrite_rules' ); // @todo probably not needed.
 	}
 
 	/**
@@ -94,7 +94,7 @@ class Plugin {
 	 * @since 1.0.0
 	 */
 	public function init() {
-		// $this->schedules = new Schedules();
+		$this->blocks = new Blocks();
 
 		// if ( $this->is_request( 'frontend' ) ) {
 		// 	$this->template_loader = new Template_Loader();
