@@ -1,0 +1,7 @@
+{
+	"phpcs.enable": true,
+	"phpcs.standard": "WordPress",
+	"phpcs.executablePath": "/var/www/wp/wp-content/plugins/ajax-posts-block/vendor/squizlabs/php_codesniffer/bin/phpcs",
+	"editor.renderWhitespace": "all",
+	"intelephense.environment.includePaths": [ "/var/www/wp" ]
+}
