@@ -1,0 +1,27 @@
+{
+	"name": "ajax-posts-block/ajax-posts-block",
+	"description": "WordPress editor block that displays a user-defined number of posts by category and/or tag.",
+	"type": "project",
+	"authors": [
+		{
+			"name": "capital_w_dangit",
+			"email": "capital-w-dangit@uhoh.uhoh"
+		}
+	],
+	"require": {},
+	"require-dev": {
+		"wp-coding-standards/wpcs": "^2.2",
+		"dealerdirect/phpcodesniffer-composer-installer": "^0.6.2",
+		"phpcompatibility/php-compatibility": "^9.3",
+		"roave/security-advisories": "dev-master"
+	},
+	"autoload": {
+		"psr-4": { "AJAX_Posts_Block\\": "./src" }
+	},
+	"scripts": {
+		"install-codestandards": [
+			"Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run"
+		],
+		"phpcs": "phpcs . --ignore=node_modules/*,vendor/*"
+	}
+}
