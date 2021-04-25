@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="AJAX Posts Block" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/squizlabs/PHP_CodeSniffer/master/phpcs.xsd">
+
+	<description>A custom set of rules to check for AJAX Posts Block</description>
+
+	<!-- Pass some flags to PHPCS:
+		 p flag: Show progress of the run.
+		 s flag: Show sniff codes in all reports.
+		 v flag: Print verbose output.
+		 n flag: Do not print warnings.
+	-->
+	<arg value="psvn"/>
+
+	<!-- Check up to 8 files simultanously. -->
+	<arg name="parallel" value="8"/>
+
+	<!-- Only check the PHP, CSS and SCSS files. JS files are checked separately with ESLint. -->
+	<arg name="extensions" value="php,css,scss/css"/>
+
+	<!-- Check all files in this directory and the directories below it. -->
+	<file>.</file>
+
+	<!-- Exclude the Composer Vendor directory. -->
+	<exclude-pattern>/vendor/*</exclude-pattern>
+
+	<!-- Exclude the Node Modules directory. -->
+	<exclude-pattern>/node_modules/*</exclude-pattern>
+
+	<!-- Exclude build files. -->
+	<exclude-pattern>/build/*</exclude-pattern>
+
+	<!-- Include the WordPress-Extra standard. -->
+	<rule ref="WordPress-Extra"/>
+
+	<!-- Let's also check that everything is properly documented. -->
+	<rule ref="WordPress-Docs"/>
+
+	<!-- Add in some extra rules from other standards. -->
+	<rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>
+	<rule ref="Generic.Commenting.Todo"/>
+
+	<config name="minimum_supported_wp_version" value="5.7"/>
+
+	<!-- Verify that the text_domain is set to the desired text-domain.
+		 Multiple valid text domains can be provided as a comma-delimited list. -->
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array" value="ajax-posts-block"/>
+		</properties>
+	</rule>
+
+	<!-- Allow for theme specific exceptions to the file name rules based
+		 on the theme hierarchy and ensure PSR-4 autoloading compatibility. -->
+	<rule ref="WordPress.Files.FileName">
+		<properties>
+			<property name="strict_class_file_names" value="false" />
+		</properties>
+		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
+	</rule>
+
+	<!-- Allow for block-cased attribute vars (from extract) and false-positived
+	     "global prefixes" -->
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound">
+		<exclude-pattern>*/src/templates/*</exclude-pattern>
+	</rule>
+
+	<rule ref="WordPress.NamingConventions.ValidVariableName.VariableNotSnakeCase">
+		<exclude-pattern>*/src/templates/block/*</exclude-pattern>
+	</rule>
+
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="AJAX_Posts_Block" />
+				<element value="ajax_posts_block" />
+				<element value="AJAX_POSTS_BLOCK" />
+				<element value="apb" />
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress">
+		<!-- allow modern array syntax -->
+		<exclude name="Generic.Arrays.DisallowShortArraySyntax.Found" />
+
+		<!-- allow readable ternaries -->
+		<exclude name="WordPress.PHP.DisallowShortTernary.Found" />
+	</rule>
+
+	<!-- Use the PHPCompatibility ruleset -->
+	<config name="testVersion" value="7.0-99.0"/>
+	<rule ref="PHPCompatibility" />
+
+</ruleset>
