@@ -7,3 +7,6 @@
 // global helpers
 import './style.scss';
 import './index.scss';
+
+// blocks
+import './blocks';
