@@ -27,7 +27,16 @@ registerBlockType( 'ajax-posts-block/posts', {
 	attributes: {
 		num: {
 			type: 'number',
+			// source: 'attribute', // @todo try to make this work
+			// selector: '[data-num]',
+			// attribute: 'data-num',
 			default: 6,
+		},
+		categories: {
+			type: 'array',
+			items: {
+				type: 'object',
+			},
 		},
 	},
 
