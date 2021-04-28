@@ -10,9 +10,10 @@
 		"lint:js": "wp-scripts lint-js",
 		"packages-update": "wp-scripts packages-update"
 	},
-	"dependencies": {},
 	"devDependencies": {
 		"@wordpress/icons": "^2.8.0",
-		"@wordpress/scripts": "^12.5.0"
+		"@wordpress/scripts": "^12.5.0",
+		"html-entities": "^1.4.0",
+		"react-select": "^4.3.0"
 	}
 }
