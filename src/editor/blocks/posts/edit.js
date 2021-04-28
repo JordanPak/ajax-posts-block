@@ -5,40 +5,108 @@
  */
 
 import { __ } from '@wordpress/i18n';
+import { withSelect } from '@wordpress/data';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, RangeControl } from '@wordpress/components';
 
-export default function Edit( { attributes, setAttributes } ) {
-	const { num } = attributes;
+import TermsControl from '../../components/terms-control';
 
-	return (
-		<>
-			<InspectorControls>
-				<PanelBody
-					title={ __( 'Sorting and filtering', 'full-score-events' ) }
+const edit = withSelect( ( select, props ) => ( {
+	// Get categories by reference in case a name/label is changed.
+	categories: select( 'core' ).getEntityRecords( 'taxonomy', 'category', {
+		include: props.attributes.categories,
+	} ),
+	// categorySuggestions: select( 'core' ).getEntityRecords(
+	// 	'taxonomy',
+	// 	'category'
+	// ),
+
+	// Get tags by reference in case a name/label is changed.
+	tags: select( 'core' ).getEntityRecords( 'taxonomy', 'post_tag', {
+		include: props.attributes.tags,
+	} ),
+	// tagSuggestions: select( 'core' ).getEntityRecords( 'taxonomy', 'post_tag' ),
+} ) )(
+	( {
+		attributes,
+		setAttributes,
+		categories,
+		// categorySuggestions,
+		tags,
+		// tagSuggestions,
+	} ) => {
+		const { num } = attributes;
+		console.log( "ALREADY SET CATS", categories );
+		// console.log( "CAT SUGGESTIONS", categorySuggestions );
+		console.log( "ALREADY SET TAGS", tags );
+		// console.log( "TAG SUGGESTIONS", tagSuggestions );
+
+		return (
+			<>
+				<InspectorControls>
+					<PanelBody
+						title={ __(
+							'Sorting and filtering',
+							'full-score-events'
+						) }
+					>
+						<RangeControl
+							label={ __(
+								'Number of items',
+								'ajax-posts-block'
+							) }
+							value={ num }
+							onChange={ ( value ) =>
+								setAttributes( { num: value } )
+							}
+							min={ 1 }
+							max={ 20 }
+						/>
+						<TermsControl
+							endpoint="categories"
+							terms={ categories }
+							// suggestions={ categorySuggestions }
+							setTerms={ ( terms ) =>
+								setAttributes( { categories: terms } )
+							}
+							singularLabel={ __(
+								'category',
+								'ajax-poosts-block'
+							) }
+							pluralLabel={ __(
+								'categories',
+								'ajax-poosts-block'
+							) }
+						/>
+						<TermsControl
+							endpoint="tags"
+							terms={ tags }
+							// suggestions={ tagSuggestions }
+							setTerms={ ( terms ) => {
+								console.log( 'SETTING TAGS', terms );
+								setAttributes( { tags: terms } );
+							} }
+							singularLabel={ __( 'tag', 'ajax-poosts-block' ) }
+							pluralLabel={ __( 'tags', 'ajax-poosts-block' ) }
+						/>
+					</PanelBody>
+				</InspectorControls>
+
+				<div
+					{ ...useBlockProps( {
+						'data-num': num,
+					} ) }
 				>
-					<RangeControl
-						label={ __( 'Number of items', 'ajax-posts-block' ) }
-						value={ num }
-						onChange={ ( value ) =>
-							setAttributes( { num: value } )
-						}
-						min={ 1 }
-						max={ 20 }
-					/>
-				</PanelBody>
-			</InspectorControls>
+					<h2>Where's Allie</h2>
+				</div>
+			</>
+		);
+} );
 
-			<div
-				{ ...useBlockProps( {
-					'data-num': num,
-				} ) }
-			>
-				<h2>Where's Allie</h2>
-			</div>
-		</>
-	);
+export default edit;
 
-	// const { type, message } = attributes,
-	// 	blockProps = useBlockProps( { className: `fse-callout-${ type }` } );
-}
+// export default function Edit( { attributes, setAttributes } ) {
+
+// 	// const { type, message } = attributes,
+// 	// 	blockProps = useBlockProps( { className: `fse-callout-${ type }` } );
+// }
