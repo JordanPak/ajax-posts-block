@@ -1,7 +1,7 @@
 /**
  * Dynamic dropdown for post tag terms
  *
- * This allows us to work with the rest API's (getEntityRecords) 100-item limit
+ * This allows us to work with the REST API's (getEntityRecords) 100-item limit
  * in case there are more than 100 tags, as well as allowing the editor to
  * search for tags.
  *

@@ -1,7 +1,7 @@
 /**
  * Select dropdown for taxonomy terms
  *
- * This allows us to work with the rest API's (getEntityRecords) 100-item limit
+ * This allows us to work with the REST API's (getEntityRecords) 100-item limit
  * in case there are more than 100 categories, tags, etc.
  *
  * @since 1.0.0

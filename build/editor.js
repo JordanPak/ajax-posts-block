@@ -17105,7 +17105,7 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * Dynamic dropdown for category terms
  *
- * This allows us to work with the rest API's (getEntityRecords) 100-item limit
+ * This allows us to work with the REST API's (getEntityRecords) 100-item limit
  * in case there are more than 100 categories, as well as allowing the editor
  * to search for categories.
  *
@@ -17160,7 +17160,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var PostTypeControl = Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__["withSelect"])(function (select) {
+var PostTypesControl = Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__["withSelect"])(function (select) {
   return {
     types: select('core').getPostTypes()
   };
@@ -17212,7 +17212,7 @@ var PostTypeControl = Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__["withS
     placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Leave empty to show all', 'ajax-posts-block')
   }));
 });
-/* harmony default export */ __webpack_exports__["default"] = (PostTypeControl);
+/* harmony default export */ __webpack_exports__["default"] = (PostTypesControl);
 
 /***/ }),
 
@@ -17236,7 +17236,7 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * Dynamic dropdown for post tag terms
  *
- * This allows us to work with the rest API's (getEntityRecords) 100-item limit
+ * This allows us to work with the REST API's (getEntityRecords) 100-item limit
  * in case there are more than 100 tags, as well as allowing the editor to
  * search for tags.
  *
@@ -17283,7 +17283,7 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * Select dropdown for taxonomy terms
  *
- * This allows us to work with the rest API's (getEntityRecords) 100-item limit
+ * This allows us to work with the REST API's (getEntityRecords) 100-item limit
  * in case there are more than 100 categories, tags, etc.
  *
  * @since 1.0.0
