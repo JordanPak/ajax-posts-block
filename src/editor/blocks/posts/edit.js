@@ -10,7 +10,7 @@ import { PanelBody, RangeControl } from '@wordpress/components';
 
 import CategoriesControl from '../../components/categories-control';
 import TagsControl from '../../components/tags-control';
-import PostTypeControl from '../../components/post-type-control';
+import PostTypesControl from '../../components/post-types-control';
 
 export default function Edit( { attributes, setAttributes } ) {
 	const { num, categories, tags, types } = attributes;
@@ -42,7 +42,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							setAttributes( { tags: value } )
 						}
 					/>
-					<PostTypeControl
+					<PostTypesControl
 						value={ types }
 						onChange={ ( value ) =>
 							setAttributes( { types: value } )

@@ -11,7 +11,7 @@ import { __ } from '@wordpress/i18n';
 import { withSelect } from '@wordpress/data';
 import { BaseControl } from '@wordpress/components';
 
-const PostTypeControl = withSelect( ( select ) => ( {
+const PostTypesControl = withSelect( ( select ) => ( {
 	types: select( 'core' ).getPostTypes(),
 } ) )( ( { types, value, onChange } ) => {
 	// Build "viewable" options
@@ -56,4 +56,4 @@ const PostTypeControl = withSelect( ( select ) => ( {
 	);
 } );
 
-export default PostTypeControl;
+export default PostTypesControl;

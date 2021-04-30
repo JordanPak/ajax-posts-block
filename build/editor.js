@@ -16931,7 +16931,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _components_categories_control__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/categories-control */ "./src/editor/components/categories-control/index.js");
 /* harmony import */ var _components_tags_control__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/tags-control */ "./src/editor/components/tags-control/index.js");
-/* harmony import */ var _components_post_type_control__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/post-type-control */ "./src/editor/components/post-type-control/index.js");
+/* harmony import */ var _components_post_types_control__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/post-types-control */ "./src/editor/components/post-types-control/index.js");
 
 
 /**
@@ -16978,7 +16978,7 @@ function Edit(_ref) {
         tags: value
       });
     }
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_components_post_type_control__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_components_post_types_control__WEBPACK_IMPORTED_MODULE_7__["default"], {
     value: types,
     onChange: function onChange(value) {
       return setAttributes({
@@ -17128,10 +17128,10 @@ function CategoriesControl(_ref) {
 
 /***/ }),
 
-/***/ "./src/editor/components/post-type-control/index.js":
-/*!**********************************************************!*\
-  !*** ./src/editor/components/post-type-control/index.js ***!
-  \**********************************************************/
+/***/ "./src/editor/components/post-types-control/index.js":
+/*!***********************************************************!*\
+  !*** ./src/editor/components/post-types-control/index.js ***!
+  \***********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
