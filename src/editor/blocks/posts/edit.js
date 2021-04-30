@@ -82,10 +82,9 @@ const edit = withSelect( ( select, props ) => ( {
 							endpoint="tags"
 							terms={ tags }
 							// suggestions={ tagSuggestions }
-							setTerms={ ( terms ) => {
-								console.log( 'SETTING TAGS', terms );
-								setAttributes( { tags: terms } );
-							} }
+							setTerms={ ( terms ) =>
+								setAttributes( { tags: terms } )
+							}
 							singularLabel={ __( 'tag', 'ajax-poosts-block' ) }
 							pluralLabel={ __( 'tags', 'ajax-poosts-block' ) }
 						/>
