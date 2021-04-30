@@ -10,6 +10,7 @@ import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, RangeControl } from '@wordpress/components';
 
 import TermsControl from '../../components/terms-control';
+import PostTypeControl from '../../components/post-type-control';
 
 const edit = withSelect( ( select, props ) => ( {
 	// Get categories by reference in case a name/label is changed.
@@ -35,10 +36,10 @@ const edit = withSelect( ( select, props ) => ( {
 		tags,
 		// tagSuggestions,
 	} ) => {
-		const { num } = attributes;
-		console.log( "ALREADY SET CATS", categories );
+		const { num, types } = attributes;
+		// console.log( "ALREADY SET CATS", categories );
 		// console.log( "CAT SUGGESTIONS", categorySuggestions );
-		console.log( "ALREADY SET TAGS", tags );
+		// console.log( "ALREADY SET TAGS", tags );
 		// console.log( "TAG SUGGESTIONS", tagSuggestions );
 
 		return (
@@ -87,6 +88,12 @@ const edit = withSelect( ( select, props ) => ( {
 							}
 							singularLabel={ __( 'tag', 'ajax-poosts-block' ) }
 							pluralLabel={ __( 'tags', 'ajax-poosts-block' ) }
+						/>
+						<PostTypeControl
+							value={ types }
+							onChange={ ( value ) =>
+								setAttributes( { types: value } )
+							}
 						/>
 					</PanelBody>
 				</InspectorControls>
