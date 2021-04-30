@@ -8,6 +8,8 @@ import { __ } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, RangeControl } from '@wordpress/components';
 
+import icons from '../../../icons';
+
 import PostTypesControl from '../../components/post-types-control';
 import CategoriesControl from '../../components/categories-control';
 import TagsControl from '../../components/tags-control';
@@ -59,7 +61,10 @@ export default function Edit( { attributes, setAttributes } ) {
 					'data-tags': tags.join( ',' ),
 				} ) }
 			>
-				<h2>Where's Allie</h2>
+				<p className="apb-loading">
+					{ __( 'Loading', 'ajax-posts-block' ) }
+					{ icons.loading() }
+				</p>
 			</div>
 		</>
 	);

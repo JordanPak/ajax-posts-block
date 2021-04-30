@@ -3,7 +3,11 @@
  *
  * @since 1.0.0
  */
+
+import { __ } from '@wordpress/i18n';
 import { useBlockProps } from '@wordpress/block-editor';
+
+import icons from '../../../icons';
 
 export default function save( { attributes } ) {
 	const { num, types, categories, tags } = attributes;
@@ -17,7 +21,10 @@ export default function save( { attributes } ) {
 				'data-tags': tags.join( ',' ),
 			} ) }
 		>
-			<h2>Where's Allie</h2>
+			<p className="apb-loading">
+				{ __( 'Loading', 'ajax-posts-block' ) }
+				{ icons.loading() }
+			</p>
 		</div>
 	);
 }
