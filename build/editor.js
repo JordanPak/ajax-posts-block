@@ -16931,7 +16931,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _components_categories_control__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/categories-control */ "./src/editor/components/categories-control/index.js");
 /* harmony import */ var _components_tags_control__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/tags-control */ "./src/editor/components/tags-control/index.js");
-/* harmony import */ var _components_post_types_control__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/post-types-control */ "./src/editor/components/post-types-control/index.js");
+/* harmony import */ var _components_post_types_control__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/post-types-control */ "./src/editor/components/post-types-control/index.js");
 
 
 /**
@@ -16978,7 +16978,7 @@ function Edit(_ref) {
         tags: value
       });
     }
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_components_post_types_control__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_components_post_types_control__WEBPACK_IMPORTED_MODULE_6__["default"], {
     value: types,
     onChange: function onChange(value) {
       return setAttributes({
@@ -17314,7 +17314,7 @@ var TermsControl = Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_3__["withSele
     className: "abp-terms-control",
     id: "abp-terms-select",
     label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["sprintf"])( // Translators: Filter to %s
-    Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Filter to %s', 'ajax-posts-block'), pluralLabel)
+    Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Filter to items with %s', 'ajax-posts-block'), pluralLabel)
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(react_select_async__WEBPACK_IMPORTED_MODULE_1__["default"], {
     name: "abp-terms-select",
     isMulti: true,

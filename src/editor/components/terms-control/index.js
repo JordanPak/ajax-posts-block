@@ -31,7 +31,7 @@ const TermsControl = withSelect( ( select, { taxonomy, value } ) => ( {
 				id="abp-terms-select"
 				label={ sprintf(
 					// Translators: Filter to %s
-					__( 'Filter to %s', 'ajax-posts-block' ),
+					__( 'Filter to items with %s', 'ajax-posts-block' ),
 					pluralLabel
 				) }
 			>
