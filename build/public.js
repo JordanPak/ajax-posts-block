@@ -86,34 +86,18 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/public/global.scss":
-/*!********************************!*\
-  !*** ./src/public/global.scss ***!
-  \********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
 /***/ "./src/public/index.js":
 /*!*****************************!*\
   !*** ./src/public/index.js ***!
   \*****************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _global_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./global.scss */ "./src/public/global.scss");
-/* harmony import */ var _global_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_global_scss__WEBPACK_IMPORTED_MODULE_0__);
 /**
  * Front end-only CSS and JS
  *
  * @since 1.0.0
  */
-
 
 /***/ })
 

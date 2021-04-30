@@ -1,3 +1,29 @@
+/**
+ * Global helpers
+ *
+ * @since 1.0.0
+ */
+[data-apb-icon-spin=true] {
+  -webkit-animation: apb-icon-spin 2s linear infinite;
+          animation: apb-icon-spin 2s linear infinite;
+}
 
+@-webkit-keyframes apb-icon-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+@keyframes apb-icon-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(1turn);
+  }
+}
 
 /*# sourceMappingURL=style-editor.css.map*/
