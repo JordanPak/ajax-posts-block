@@ -54,6 +54,9 @@ export default function Edit( { attributes, setAttributes } ) {
 			<div
 				{ ...useBlockProps( {
 					'data-num': num,
+					'data-categories': categories.join( ',' ),
+					'data-tags': tags.join( ',' ),
+					'data-types': types.join( ',' ),
 				} ) }
 			>
 				<h2>Where's Allie</h2>

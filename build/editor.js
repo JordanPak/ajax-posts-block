@@ -16986,7 +16986,10 @@ function Edit(_ref) {
       });
     }
   }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", Object(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["useBlockProps"])({
-    'data-num': num
+    'data-num': num,
+    'data-categories': categories.join(','),
+    'data-tags': tags.join(','),
+    'data-types': types.join(',')
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h2", null, "Where's Allie")));
 }
 
@@ -17077,9 +17080,15 @@ __webpack_require__.r(__webpack_exports__);
 
 function save(_ref) {
   var attributes = _ref.attributes;
-  var num = attributes.num;
+  var num = attributes.num,
+      categories = attributes.categories,
+      tags = attributes.tags,
+      types = attributes.types;
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__["useBlockProps"].save({
-    'data-num': num
+    'data-num': num,
+    'data-categories': categories.join(','),
+    'data-tags': tags.join(','),
+    'data-types': types.join(',')
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h2", null, "Where's Allie"));
 }
 
