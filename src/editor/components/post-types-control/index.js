@@ -32,12 +32,12 @@ const PostTypesControl = withSelect( ( select ) => ( {
 
 	return (
 		<BaseControl
-			className="abp-post-type-control"
-			id="abp-post-type-select"
+			className="apb-post-type-control"
+			id="apb-post-type-select"
 			label={ __( 'Filter to post types', 'ajax-posts-block' ) }
 		>
 			<Select
-				name="abp-post-type-select"
+				name="apb-post-type-select"
 				isMulti
 				value={ valueObjects }
 				options={ options }

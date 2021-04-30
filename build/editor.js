@@ -17192,11 +17192,11 @@ var PostTypesControl = Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__["with
   });
 
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["BaseControl"], {
-    className: "abp-post-type-control",
-    id: "abp-post-type-select",
+    className: "apb-post-type-control",
+    id: "apb-post-type-select",
     label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Filter to post types', 'ajax-posts-block')
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(react_select__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    name: "abp-post-type-select",
+    name: "apb-post-type-select",
     isMulti: true,
     value: valueObjects,
     options: options,
@@ -17311,12 +17311,13 @@ var TermsControl = Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_3__["withSele
   // set default arrays in case things aren't available yet
   selectedTerms = selectedTerms || [];
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["BaseControl"], {
-    className: "abp-terms-control",
-    id: "abp-terms-select",
+    className: "apb-terms-control",
+    id: "apb-terms-select",
     label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["sprintf"])( // Translators: Filter to %s
     Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Filter to items with %s', 'ajax-posts-block'), pluralLabel)
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(react_select_async__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    name: "abp-terms-select",
+    name: "apb-terms-select",
+    className: "apb-terms-select",
     isMulti: true,
     placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["sprintf"])( // Translators: Start typing %s name
     Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Start typing %s name', 'ajax-posts-block'), singularLabel),

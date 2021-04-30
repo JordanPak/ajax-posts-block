@@ -27,8 +27,8 @@ const TermsControl = withSelect( ( select, { taxonomy, value } ) => ( {
 
 		return (
 			<BaseControl
-				className="abp-terms-control"
-				id="abp-terms-select"
+				className="apb-terms-control"
+				id="apb-terms-select"
 				label={ sprintf(
 					// Translators: Filter to %s
 					__( 'Filter to items with %s', 'ajax-posts-block' ),
@@ -36,7 +36,8 @@ const TermsControl = withSelect( ( select, { taxonomy, value } ) => ( {
 				) }
 			>
 				<AsyncSelect
-					name="abp-terms-select"
+					name="apb-terms-select"
+					className="apb-terms-select"
 					isMulti
 					placeholder={ sprintf(
 						// Translators: Start typing %s name
