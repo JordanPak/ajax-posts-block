@@ -1,8 +1,5 @@
 /**
- * Select dropdown for taxonomy terms
- *
- * This allows us to work with the rest API's (getEntityRecords) 100-item limit
- * in case there are more than 100 categories, tags, etc.
+ * Multi-select dropdown for "viewable" post types
  *
  * @since 1.0.0
  */
@@ -14,7 +11,7 @@ import { __ } from '@wordpress/i18n';
 import { withSelect } from '@wordpress/data';
 import { BaseControl } from '@wordpress/components';
 
-const PostTypeControl = withSelect( ( select ) => ( {
+const PostTypesControl = withSelect( ( select ) => ( {
 	types: select( 'core' ).getPostTypes(),
 } ) )( ( { types, value, onChange } ) => {
 	// Build "viewable" options
@@ -59,4 +56,4 @@ const PostTypeControl = withSelect( ( select ) => ( {
 	);
 } );
 
-export default PostTypeControl;
+export default PostTypesControl;
