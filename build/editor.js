@@ -16929,8 +16929,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _components_terms_control__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/terms-control */ "./src/editor/components/terms-control/index.js");
-/* harmony import */ var _components_post_type_control__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/post-type-control */ "./src/editor/components/post-type-control/index.js");
+/* harmony import */ var _components_categories_control__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/categories-control */ "./src/editor/components/categories-control/index.js");
+/* harmony import */ var _components_tags_control__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/tags-control */ "./src/editor/components/tags-control/index.js");
+/* harmony import */ var _components_post_type_control__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/post-type-control */ "./src/editor/components/post-type-control/index.js");
 
 
 /**
@@ -16938,6 +16939,7 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @since 1.0.0
  */
+
 
 
 
@@ -16962,29 +16964,21 @@ function Edit(_ref) {
     },
     min: 1,
     max: 20
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_components_terms_control__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    taxonomy: "category",
-    endpoint: "categories",
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_components_categories_control__WEBPACK_IMPORTED_MODULE_4__["default"], {
     value: categories,
     onChange: function onChange(value) {
       return setAttributes({
         categories: value
       });
-    },
-    singularLabel: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('category', 'ajax-poosts-block'),
-    pluralLabel: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('categories', 'ajax-poosts-block')
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_components_terms_control__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    taxonomy: "post_tag",
-    endpoint: "tags",
+    }
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_components_tags_control__WEBPACK_IMPORTED_MODULE_5__["default"], {
     value: tags,
     onChange: function onChange(value) {
       return setAttributes({
         tags: value
       });
-    },
-    singularLabel: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('tag', 'ajax-poosts-block'),
-    pluralLabel: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('tags', 'ajax-poosts-block')
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_components_post_type_control__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    }
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_components_post_type_control__WEBPACK_IMPORTED_MODULE_6__["default"], {
     value: types,
     onChange: function onChange(value) {
       return setAttributes({
@@ -17091,6 +17085,49 @@ function save(_ref) {
 
 /***/ }),
 
+/***/ "./src/editor/components/categories-control/index.js":
+/*!***********************************************************!*\
+  !*** ./src/editor/components/categories-control/index.js ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CategoriesControl; });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _terms_control__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../terms-control */ "./src/editor/components/terms-control/index.js");
+
+
+/**
+ * Dynamic dropdown for category terms
+ *
+ * This allows us to work with the rest API's (getEntityRecords) 100-item limit
+ * in case there are more than 100 categories, as well as allowing the editor
+ * to search for categories.
+ *
+ * @since 1.0.0
+ */
+
+
+function CategoriesControl(_ref) {
+  var value = _ref.value,
+      onChange = _ref.onChange;
+  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_terms_control__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    taxonomy: "category",
+    endpoint: "categories",
+    value: value,
+    onChange: onChange,
+    singularLabel: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('category', 'ajax-poosts-block'),
+    pluralLabel: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('categories', 'ajax-poosts-block')
+  });
+}
+
+/***/ }),
+
 /***/ "./src/editor/components/post-type-control/index.js":
 /*!**********************************************************!*\
   !*** ./src/editor/components/post-type-control/index.js ***!
@@ -17114,10 +17151,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /**
- * Select dropdown for taxonomy terms
- *
- * This allows us to work with the rest API's (getEntityRecords) 100-item limit
- * in case there are more than 100 categories, tags, etc.
+ * Multi-select dropdown for "viewable" post types
  *
  * @since 1.0.0
  */
@@ -17179,6 +17213,49 @@ var PostTypeControl = Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__["withS
   }));
 });
 /* harmony default export */ __webpack_exports__["default"] = (PostTypeControl);
+
+/***/ }),
+
+/***/ "./src/editor/components/tags-control/index.js":
+/*!*****************************************************!*\
+  !*** ./src/editor/components/tags-control/index.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return TagsControl; });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _terms_control__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../terms-control */ "./src/editor/components/terms-control/index.js");
+
+
+/**
+ * Dynamic dropdown for post tag terms
+ *
+ * This allows us to work with the rest API's (getEntityRecords) 100-item limit
+ * in case there are more than 100 tags, as well as allowing the editor to
+ * search for tags.
+ *
+ * @since 1.0.0
+ */
+
+
+function TagsControl(_ref) {
+  var value = _ref.value,
+      onChange = _ref.onChange;
+  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_terms_control__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    taxonomy: "post_tag",
+    endpoint: "tags",
+    value: value,
+    onChange: onChange,
+    singularLabel: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('tag', 'ajax-poosts-block'),
+    pluralLabel: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('tags', 'ajax-poosts-block')
+  });
+}
 
 /***/ }),
 

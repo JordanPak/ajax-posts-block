@@ -8,7 +8,8 @@ import { __ } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, RangeControl } from '@wordpress/components';
 
-import TermsControl from '../../components/terms-control';
+import CategoriesControl from '../../components/categories-control';
+import TagsControl from '../../components/tags-control';
 import PostTypeControl from '../../components/post-type-control';
 
 export default function Edit( { attributes, setAttributes } ) {
@@ -29,25 +30,17 @@ export default function Edit( { attributes, setAttributes } ) {
 						min={ 1 }
 						max={ 20 }
 					/>
-					<TermsControl
-						taxonomy="category"
-						endpoint="categories"
+					<CategoriesControl
 						value={ categories }
 						onChange={ ( value ) =>
 							setAttributes( { categories: value } )
 						}
-						singularLabel={ __( 'category', 'ajax-poosts-block' ) }
-						pluralLabel={ __( 'categories', 'ajax-poosts-block' ) }
 					/>
-					<TermsControl
-						taxonomy="post_tag"
-						endpoint="tags"
+					<TagsControl
 						value={ tags }
 						onChange={ ( value ) =>
 							setAttributes( { tags: value } )
 						}
-						singularLabel={ __( 'tag', 'ajax-poosts-block' ) }
-						pluralLabel={ __( 'tags', 'ajax-poosts-block' ) }
 					/>
 					<PostTypeControl
 						value={ types }
