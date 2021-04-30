@@ -17042,17 +17042,11 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])('aja
     },
     categories: {
       type: 'array',
-      default: [] // items: {
-      // 	type: 'object',
-      // },
-
+      default: []
     },
     tags: {
       type: 'array',
-      default: [] // items: {
-      // 	type: 'object',
-      // },
-
+      default: []
     },
     types: {
       type: 'array',

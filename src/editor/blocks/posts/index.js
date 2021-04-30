@@ -35,16 +35,10 @@ registerBlockType( 'ajax-posts-block/posts', {
 		categories: {
 			type: 'array',
 			default: [],
-			// items: {
-			// 	type: 'object',
-			// },
 		},
 		tags: {
 			type: 'array',
 			default: [],
-			// items: {
-			// 	type: 'object',
-			// },
 		},
 		types: {
 			type: 'array',
