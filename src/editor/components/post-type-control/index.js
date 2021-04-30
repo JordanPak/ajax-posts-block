@@ -1,0 +1,62 @@
+/**
+ * Select dropdown for taxonomy terms
+ *
+ * This allows us to work with the rest API's (getEntityRecords) 100-item limit
+ * in case there are more than 100 categories, tags, etc.
+ *
+ * @since 1.0.0
+ */
+
+import _ from 'lodash';
+import Select from 'react-select';
+
+import { __ } from '@wordpress/i18n';
+import { withSelect } from '@wordpress/data';
+import { BaseControl } from '@wordpress/components';
+
+const PostTypeControl = withSelect( ( select ) => ( {
+	types: select( 'core' ).getPostTypes(),
+} ) )( ( { types, value, onChange } ) => {
+	// Build "viewable" options
+	const options = _.filter( types, 'viewable' ).map(
+		( { labels, slug } ) => ( {
+			label: labels.singular_name,
+			value: slug,
+		} )
+	);
+
+	// Build options from post type slug values
+	const valueObjects = _.filter( types, ( type ) => {
+		return value.includes( type.slug );
+	} ).map( ( { labels, slug } ) => ( {
+		label: labels.singular_name,
+		value: slug,
+	} ) );
+
+	return (
+		<BaseControl
+			className="abp-post-type-control"
+			id="abp-post-type-select"
+			label={ __( 'Filter to post types', 'ajax-posts-block' ) }
+		>
+			<Select
+				name="abp-post-type-select"
+				isMulti
+				value={ valueObjects }
+				options={ options }
+				onChange={ ( values ) => {
+					// Make sure we have an array and just send back the values
+					values = values || [];
+					values = values.map( ( option ) => option.value );
+					onChange( values );
+				} }
+				placeholder={ __(
+					'Leave empty to show all',
+					'ajax-posts-block'
+				) }
+			/>
+		</BaseControl>
+	);
+} );
+
+export default PostTypeControl;
