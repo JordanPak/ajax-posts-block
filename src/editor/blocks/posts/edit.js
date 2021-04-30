@@ -8,12 +8,12 @@ import { __ } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, RangeControl } from '@wordpress/components';
 
+import PostTypesControl from '../../components/post-types-control';
 import CategoriesControl from '../../components/categories-control';
 import TagsControl from '../../components/tags-control';
-import PostTypesControl from '../../components/post-types-control';
 
 export default function Edit( { attributes, setAttributes } ) {
-	const { num, categories, tags, types } = attributes;
+	const { num, types, categories, tags } = attributes;
 
 	return (
 		<>
@@ -30,6 +30,12 @@ export default function Edit( { attributes, setAttributes } ) {
 						min={ 1 }
 						max={ 20 }
 					/>
+					<PostTypesControl
+						value={ types }
+						onChange={ ( value ) =>
+							setAttributes( { types: value } )
+						}
+					/>
 					<CategoriesControl
 						value={ categories }
 						onChange={ ( value ) =>
@@ -42,21 +48,15 @@ export default function Edit( { attributes, setAttributes } ) {
 							setAttributes( { tags: value } )
 						}
 					/>
-					<PostTypesControl
-						value={ types }
-						onChange={ ( value ) =>
-							setAttributes( { types: value } )
-						}
-					/>
 				</PanelBody>
 			</InspectorControls>
 
 			<div
 				{ ...useBlockProps( {
 					'data-num': num,
+					'data-types': types.join( ',' ),
 					'data-categories': categories.join( ',' ),
 					'data-tags': tags.join( ',' ),
-					'data-types': types.join( ',' ),
 				} ) }
 			>
 				<h2>Where's Allie</h2>

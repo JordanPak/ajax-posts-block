@@ -6,15 +6,15 @@
 import { useBlockProps } from '@wordpress/block-editor';
 
 export default function save( { attributes } ) {
-	const { num, categories, tags, types } = attributes;
+	const { num, types, categories, tags } = attributes;
 
 	return (
 		<div
 			{ ...useBlockProps.save( {
 				'data-num': num,
+				'data-types': types.join( ',' ),
 				'data-categories': categories.join( ',' ),
 				'data-tags': tags.join( ',' ),
-				'data-types': types.join( ',' ),
 			} ) }
 		>
 			<h2>Where's Allie</h2>
