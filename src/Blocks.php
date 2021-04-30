@@ -54,16 +54,17 @@ class Blocks {
 	 * @since 1.0.0
 	 */
 	public static function do_asset_registration() {
-		$build_dir = AJAX_POSTS_BLOCK_DIR . 'build';
-		$build_url = AJAX_POSTS_BLOCK_URL . 'build';
-		$asset     = require "$build_dir/editor.asset.php";
+		$build_dir    = AJAX_POSTS_BLOCK_DIR . 'build';
+		$build_url    = AJAX_POSTS_BLOCK_URL . 'build';
+		$editor_asset = require "$build_dir/editor.asset.php";
+		$public_asset = require "$build_dir/public.asset.php";
 
-		// Register block JS.
+		// Register block editor JS.
 		wp_register_script(
 			self::EDITOR_ASSET_HANDLE,
 			"$build_url/editor.js",
-			$asset['dependencies'],
-			$asset['version'],
+			$editor_asset['dependencies'],
+			$editor_asset['version'],
 			true
 		);
 
@@ -73,6 +74,15 @@ class Blocks {
 			"$build_url/editor.css",
 			[],
 			filemtime( "$build_dir/editor.css" )
+		);
+
+		// Register front-end + editor block JS.
+		wp_register_script(
+			self::ASSET_HANDLE,
+			"$build_url/public.js",
+			$public_asset['dependencies'],
+			$public_asset['version'],
+			true
 		);
 
 		// Register front-end + editor block styles.
