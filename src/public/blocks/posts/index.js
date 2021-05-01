@@ -5,6 +5,7 @@
  */
 
 import { render, Component } from '@wordpress/element';
+import { addQueryArgs } from '@wordpress/url';
 import apiFetch from '@wordpress/api-fetch';
 
 class AJAXPostsBlock extends Component {
@@ -20,6 +21,7 @@ class AJAXPostsBlock extends Component {
 
 		this.state = {
 			hasLoaded: false,
+			currentPage: 1,
 		};
 	}
 
@@ -30,6 +32,19 @@ class AJAXPostsBlock extends Component {
 	 */
 	componentDidMount() {
 		this.getPosts();
+	}
+
+	/**
+	 * Check if new posts need to be fetched
+	 *
+	 * @param {Object} prevProps Props before state was changed.
+	 * @param {*} prevState State before state was changed.
+	 */
+	componentDidUpdate( prevProps, prevState ) {
+		// Grab new posts if the page changed.
+		if ( prevState.currentPage !== this.state.currentPage ) {
+			this.getPosts();
+		}
 	}
 
 	/**
@@ -56,14 +71,48 @@ class AJAXPostsBlock extends Component {
 	 * @since 1.0.0
 	 */
 	getPosts() {
-		apiFetch( { path: '/wp/v2/posts' } ).then( ( posts ) => {
-			console.log( 'DONE', posts );
+		const { num, postTypes, categories, tags } = this.props;
+		const { currentPage } = this.state;
 
-			this.setState( {
-				posts,
-				hasLoaded: true,
+		let headers = null;
+
+		console.log(
+			`FETCHING PAGE ${ currentPage } | `,
+			`${ this.props.num } PER PAGE`
+		);
+
+		const args = {
+			page: currentPage,
+			per_page: num,
+		};
+
+		if ( postTypes ) {
+			args.type = postTypes;
+		}
+
+		console.log( 'ARGS', args );
+
+		apiFetch( {
+			path: addQueryArgs( '/wp/v2/posts', args ),
+			parse: false,
+		} )
+			.then( ( response ) => {
+				headers = response.headers;
+				return response.json();
+			} )
+			.then( ( posts ) => {
+				const totalPosts = Number( headers.get( 'x-wp-total' ) ),
+					totalPages = Number( headers.get( 'x-wp-totalpages' ) );
+
+				console.log( 'total pages', totalPages );
+
+				this.setState( {
+					posts: posts.length > 0 ? posts : false,
+					hasLoaded: true,
+					hasPages: totalPages > 1,
+					totalPages,
+				} );
 			} );
-		} );
 	}
 
 	/**
@@ -71,17 +120,14 @@ class AJAXPostsBlock extends Component {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param {string} direction Direction to page (prev or next).
+	 * @param {string} page Page to page to #roight
 	 */
-	doPage( direction ) {
-		console.log( `Paging ${ direction }` );
-
+	doPage( page ) {
 		this.setState( {
 			posts: [],
 			hasLoaded: false,
+			currentPage: page,
 		} );
-
-		this.getPosts();
 	}
 
 	/**
@@ -90,7 +136,7 @@ class AJAXPostsBlock extends Component {
 	 * @since 1.0.0
 	 */
 	doPreviousPage() {
-		this.doPage( 'PREV' );
+		this.doPage( this.state.currentPage + 1 );
 	}
 
 	/**
@@ -99,7 +145,7 @@ class AJAXPostsBlock extends Component {
 	 * @since 1.0.0
 	 */
 	doNextPage() {
-		this.doPage( 'NEXT' );
+		this.doPage( this.state.currentPage - 1 );
 	}
 
 	/**
@@ -108,21 +154,33 @@ class AJAXPostsBlock extends Component {
 	 * @return {Object} Posts + pagination or "none" message react element.
 	 */
 	renderPosts() {
-		if ( this.state.posts.length > 0 ) {
+		const { posts, currentPage, totalPages } = this.state;
+
+		if ( posts.length > 0 ) {
 			return (
 				<>
 					<h4>Here are posts</h4>
-					{ this.state.posts.map( ( post, index ) => {
+					{ posts.map( ( post, index ) => {
 						return (
 							<p key={ index }>Post: { post.title.rendered }</p>
 						);
 					} ) }
-					<button onClick={ this.doPreviousPage.bind( this ) }>
-						Previous
-					</button>
-					<button onClick={ this.doNextPage.bind( this ) }>
-						Next
-					</button>
+					{ totalPages > 1 && (
+						<>
+							<button
+								disabled={ currentPage === totalPages }
+								onClick={ this.doPreviousPage.bind( this ) }
+							>
+								{ apbHelper.previous }
+							</button>
+							<button
+								disabled={ currentPage === 1 }
+								onClick={ this.doNextPage.bind( this ) }
+							>
+								{ apbHelper.next }
+							</button>
+						</>
+					) }
 				</>
 			);
 		}
@@ -160,7 +218,7 @@ for ( const block of blocks ) {
 	render(
 		<AJAXPostsBlock
 			num={ Number( num ) }
-			postTypes={ types.split( ',' ) }
+			postTypes={ types }
 			categories={ categories.split( ',' ) }
 			tags={ tags.split( ',' ) }
 			loadingEl={ block.querySelector( '.apb-loading' ) }

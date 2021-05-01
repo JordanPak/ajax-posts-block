@@ -319,8 +319,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
-/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _wordpress_url__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/url */ "@wordpress/url");
+/* harmony import */ var _wordpress_url__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_url__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_7__);
 
 
 
@@ -346,6 +348,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 
 
+
 var AJAXPostsBlock = /*#__PURE__*/function (_Component) {
   _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2___default()(AJAXPostsBlock, _Component);
 
@@ -365,7 +368,8 @@ var AJAXPostsBlock = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      hasLoaded: false
+      hasLoaded: false,
+      currentPage: 1
     };
     return _this;
   }
@@ -380,6 +384,21 @@ var AJAXPostsBlock = /*#__PURE__*/function (_Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.getPosts();
+    }
+    /**
+     * Check if new posts need to be fetched
+     *
+     * @param {Object} prevProps Props before state was changed.
+     * @param {*} prevState State before state was changed.
+     */
+
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps, prevState) {
+      // Grab new posts if the page changed.
+      if (prevState.currentPage !== this.state.currentPage) {
+        this.getPosts();
+      }
     }
     /**
      * Display the loading UI
@@ -410,14 +429,40 @@ var AJAXPostsBlock = /*#__PURE__*/function (_Component) {
     value: function getPosts() {
       var _this2 = this;
 
-      _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_6___default()({
-        path: '/wp/v2/posts'
+      var _this$props = this.props,
+          num = _this$props.num,
+          postTypes = _this$props.postTypes,
+          categories = _this$props.categories,
+          tags = _this$props.tags;
+      var currentPage = this.state.currentPage;
+      var headers = null;
+      console.log("FETCHING PAGE ".concat(currentPage, " | "), "".concat(this.props.num, " PER PAGE"));
+      var args = {
+        page: currentPage,
+        per_page: num
+      };
+
+      if (postTypes) {
+        args.type = postTypes;
+      }
+
+      console.log('ARGS', args);
+      _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_7___default()({
+        path: Object(_wordpress_url__WEBPACK_IMPORTED_MODULE_6__["addQueryArgs"])('/wp/v2/posts', args),
+        parse: false
+      }).then(function (response) {
+        headers = response.headers;
+        return response.json();
       }).then(function (posts) {
-        console.log('DONE', posts);
+        var totalPosts = Number(headers.get('x-wp-total')),
+            totalPages = Number(headers.get('x-wp-totalpages'));
+        console.log('total pages', totalPages);
 
         _this2.setState({
-          posts: posts,
-          hasLoaded: true
+          posts: posts.length > 0 ? posts : false,
+          hasLoaded: true,
+          hasPages: totalPages > 1,
+          totalPages: totalPages
         });
       });
     }
@@ -426,18 +471,17 @@ var AJAXPostsBlock = /*#__PURE__*/function (_Component) {
      *
      * @since 1.0.0
      *
-     * @param {string} direction Direction to page (prev or next).
+     * @param {string} page Page to page to #roight
      */
 
   }, {
     key: "doPage",
-    value: function doPage(direction) {
-      console.log("Paging ".concat(direction));
+    value: function doPage(page) {
       this.setState({
         posts: [],
-        hasLoaded: false
+        hasLoaded: false,
+        currentPage: page
       });
-      this.getPosts();
     }
     /**
      * Page to older posts
@@ -448,7 +492,7 @@ var AJAXPostsBlock = /*#__PURE__*/function (_Component) {
   }, {
     key: "doPreviousPage",
     value: function doPreviousPage() {
-      this.doPage('PREV');
+      this.doPage(this.state.currentPage + 1);
     }
     /**
      * Page to newer posts
@@ -459,7 +503,7 @@ var AJAXPostsBlock = /*#__PURE__*/function (_Component) {
   }, {
     key: "doNextPage",
     value: function doNextPage() {
-      this.doPage('NEXT');
+      this.doPage(this.state.currentPage - 1);
     }
     /**
      * Render out posts with navigation or "none found" message.
@@ -470,16 +514,23 @@ var AJAXPostsBlock = /*#__PURE__*/function (_Component) {
   }, {
     key: "renderPosts",
     value: function renderPosts() {
-      if (this.state.posts.length > 0) {
-        return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("h4", null, "Here are posts"), this.state.posts.map(function (post, index) {
+      var _this$state = this.state,
+          posts = _this$state.posts,
+          currentPage = _this$state.currentPage,
+          totalPages = _this$state.totalPages;
+
+      if (posts.length > 0) {
+        return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("h4", null, "Here are posts"), posts.map(function (post, index) {
           return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("p", {
             key: index
           }, "Post: ", post.title.rendered);
-        }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("button", {
+        }), totalPages > 1 && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("button", {
+          disabled: currentPage === totalPages,
           onClick: this.doPreviousPage.bind(this)
-        }, "Previous"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("button", {
+        }, apbHelper.previous), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("button", {
+          disabled: currentPage === 1,
           onClick: this.doNextPage.bind(this)
-        }, "Next"));
+        }, apbHelper.next)));
       }
 
       return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("p", null, "NOTHING BRO");
@@ -519,7 +570,7 @@ try {
         tags = _block$dataset.tags;
     Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["render"])(Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(AJAXPostsBlock, {
       num: Number(num),
-      postTypes: types.split(','),
+      postTypes: types,
       categories: categories.split(','),
       tags: tags.split(','),
       loadingEl: block.querySelector('.apb-loading')
@@ -571,6 +622,17 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports) {
 
 (function() { module.exports = window["wp"]["element"]; }());
+
+/***/ }),
+
+/***/ "@wordpress/url":
+/*!*****************************!*\
+  !*** external ["wp","url"] ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["wp"]["url"]; }());
 
 /***/ })
 
