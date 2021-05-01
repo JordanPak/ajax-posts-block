@@ -85,6 +85,16 @@ class Blocks {
 			true
 		);
 
+		// Add some helper vars for the block.
+		wp_localize_script(
+			self::ASSET_HANDLE,
+			'apbHelper',
+			[
+				'previous' => __( 'Older', 'ajax-posts-block' ),
+				'next'     => __( 'Newer', 'ajax-posts-block' ),
+			]
+		);
+
 		// Register front-end + editor block styles.
 		wp_register_style(
 			self::ASSET_HANDLE,
