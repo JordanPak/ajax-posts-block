@@ -48,7 +48,7 @@ class Plugin {
 	public $blocks;
 
 	/**
-	 * REST API endpoints
+	 * REST API endpoint extension
 	 *
 	 * @since 1.0.0
 	 * @var   REST_API
