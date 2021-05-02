@@ -66,8 +66,10 @@ class REST_API {
 				}
 			}
 		} else {
-			// Otherwise, get all "showing in REST", minus wp_block.
+			// Otherwise, get all "showing in REST", minus attachments and
+			// wp_block.
 			$args['post_type'] = get_post_types( [ 'show_in_rest' => true ] );
+			unset( $args['post_type']['attachment'] );
 			unset( $args['post_type']['wp_block'] );
 		}
 
