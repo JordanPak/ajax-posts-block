@@ -42,7 +42,7 @@ class Blocks {
 	 * @since 1.0.0
 	 */
 	public function __construct() {
-		add_action( 'init', [ __CLASS__, 'do_asset_registration' ] );
+		add_action( 'init', [ __CLASS__, 'do_asset_registration' ] ); // @todo don't make this static.
 		add_action( 'enqueue_block_editor_assets', [ __CLASS__, 'enqueue_editor_assets' ] );
 
 		new Block( 'posts' );
