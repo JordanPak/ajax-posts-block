@@ -162,7 +162,9 @@ class AJAXPostsBlock extends Component {
 					<h4>Here are posts</h4>
 					{ posts.map( ( post, index ) => {
 						return (
-							<p key={ index }>Post: { post.title.rendered }</p>
+							<p key={ index }>
+								{ post.type }: { post.title.rendered }
+							</p>
 						);
 					} ) }
 					{ totalPages > 1 && (
