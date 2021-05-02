@@ -14,6 +14,15 @@ import PostTypesControl from '../../components/post-types-control';
 import CategoriesControl from '../../components/categories-control';
 import TagsControl from '../../components/tags-control';
 
+import AJAXPostsBlock from '../../../public/blocks/posts';
+
+const loading = (
+	<p className="apb-loading">
+		{ __( 'Loading', 'ajax-posts-block' ) }
+		{ icons.loading() }
+	</p>
+);
+
 export default function Edit( { attributes, setAttributes } ) {
 	const { num, types, categories, tags } = attributes;
 
@@ -61,10 +70,15 @@ export default function Edit( { attributes, setAttributes } ) {
 					'data-tags': tags.join( ',' ),
 				} ) }
 			>
-				<p className="apb-loading">
-					{ __( 'Loading', 'ajax-posts-block' ) }
-					{ icons.loading() }
-				</p>
+				<AJAXPostsBlock
+					num={ Number( num ) }
+					postTypes={ types.join( ',' ) }
+					categories={ categories.join( ',' ) }
+					tags={ tags.join( ',' ) }
+					loadingEl={ loading }
+				>
+					{ loading }
+				</AJAXPostsBlock>
 			</div>
 		</>
 	);
