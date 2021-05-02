@@ -62,14 +62,7 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 			</InspectorControls>
 
-			<div
-				{ ...useBlockProps( {
-					'data-num': num,
-					'data-types': types.join( ',' ),
-					'data-categories': categories.join( ',' ),
-					'data-tags': tags.join( ',' ),
-				} ) }
-			>
+			<div { ...useBlockProps() }>
 				<AJAXPostsBlock
 					num={ Number( num ) }
 					postTypes={ types.join( ',' ) }
