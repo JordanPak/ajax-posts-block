@@ -4,6 +4,8 @@
  * @since 1.0.0
  */
 
+import _ from 'lodash';
+
 import { render, Component } from '@wordpress/element';
 import { addQueryArgs } from '@wordpress/url';
 import apiFetch from '@wordpress/api-fetch';
@@ -86,22 +88,18 @@ class AJAXPostsBlock extends Component {
 
 		let headers = null;
 
-		console.log(
-			`FETCHING PAGE ${ currentPage } | `,
-			`${ this.props.num } PER PAGE`
+		// Build out args array, removing those that are empty
+		const args = _.omitBy(
+			{
+				apb_query: true,
+				page: currentPage,
+				per_page: num,
+				type: postTypes || null,
+				categories: categories || null,
+				tags: tags || null,
+			},
+			_.isNil
 		);
-
-		const args = {
-			apb_query: true,
-			page: currentPage,
-			per_page: num,
-		};
-
-		if ( postTypes ) {
-			args.type = postTypes;
-		}
-
-		console.log( 'ARGS', args );
 
 		apiFetch( {
 			path: addQueryArgs( '/wp/v2/posts', args ),
@@ -232,8 +230,8 @@ for ( const block of blocks ) {
 		<AJAXPostsBlock
 			num={ Number( num ) }
 			postTypes={ types }
-			categories={ categories.split( ',' ) }
-			tags={ tags.split( ',' ) }
+			categories={ categories }
+			tags={ tags }
 			loadingEl={ block.querySelector( '.apb-loading' ) }
 		/>,
 		block
