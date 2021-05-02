@@ -302,7 +302,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!******************************************!*\
   !*** ./src/public/blocks/posts/index.js ***!
   \******************************************/
-/*! no exports provided */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -395,8 +395,8 @@ var AJAXPostsBlock = /*#__PURE__*/function (_Component) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps, prevState) {
-      // Grab new posts if the page changed.
-      if (prevState.currentPage !== this.state.currentPage) {
+      // Grab new posts if the page or other props changed.
+      if (prevState.currentPage !== this.state.currentPage || prevProps.num !== this.props.num || prevProps.postTypes !== this.props.postTypes || prevProps.categories !== this.props.categories || prevProps.tags !== this.props.tags) {
         this.getPosts();
       }
     }
@@ -411,7 +411,9 @@ var AJAXPostsBlock = /*#__PURE__*/function (_Component) {
   }, {
     key: "renderLoader",
     value: function renderLoader() {
-      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("p", {
+      // If the loading element property has its own properties, it's the
+      // element from the editor view and can be rendered out as-is.
+      return this.props.loadingEl.props ? this.props.loadingEl : Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("p", {
         className: this.props.loadingEl.className,
         dangerouslySetInnerHTML: {
           __html: this.props.loadingEl.innerHTML
@@ -438,6 +440,7 @@ var AJAXPostsBlock = /*#__PURE__*/function (_Component) {
       var headers = null;
       console.log("FETCHING PAGE ".concat(currentPage, " | "), "".concat(this.props.num, " PER PAGE"));
       var args = {
+        apb_query: true,
         page: currentPage,
         per_page: num
       };
@@ -523,7 +526,7 @@ var AJAXPostsBlock = /*#__PURE__*/function (_Component) {
         return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("h4", null, "Here are posts"), posts.map(function (post, index) {
           return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("p", {
             key: index
-          }, "Post: ", post.title.rendered);
+          }, post.type, ": ", post.title.rendered);
         }), totalPages > 1 && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("button", {
           disabled: currentPage === totalPages,
           onClick: this.doPreviousPage.bind(this)
@@ -581,6 +584,8 @@ try {
 } finally {
   _iterator.f();
 }
+
+/* harmony default export */ __webpack_exports__["default"] = (AJAXPostsBlock);
 
 /***/ }),
 
