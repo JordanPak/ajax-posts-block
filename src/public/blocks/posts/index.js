@@ -41,8 +41,14 @@ class AJAXPostsBlock extends Component {
 	 * @param {*} prevState State before state was changed.
 	 */
 	componentDidUpdate( prevProps, prevState ) {
-		// Grab new posts if the page changed.
-		if ( prevState.currentPage !== this.state.currentPage ) {
+		// Grab new posts if the page or other props changed.
+		if (
+			prevState.currentPage !== this.state.currentPage ||
+			prevProps.num !== this.props.num ||
+			prevProps.postTypes !== this.props.postTypes ||
+			prevProps.categories !== this.props.categories ||
+			prevProps.tags !== this.props.tags
+		) {
 			this.getPosts();
 		}
 	}
