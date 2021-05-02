@@ -55,7 +55,11 @@ class AJAXPostsBlock extends Component {
 	 * @return {Object} Loader react element.
 	 */
 	renderLoader() {
-		return (
+		// If the loading element property has its own properties, it's the
+		// element from the editor view and can be rendered out as-is.
+		return this.props.loadingEl.props ? (
+			this.props.loadingEl
+		) : (
 			<p
 				className={ this.props.loadingEl.className }
 				dangerouslySetInnerHTML={ {
