@@ -92,6 +92,7 @@ class AJAXPostsBlock extends Component {
 		);
 
 		const args = {
+			apb_query: true,
 			page: currentPage,
 			per_page: num,
 		};
