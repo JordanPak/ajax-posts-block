@@ -238,3 +238,5 @@ for ( const block of blocks ) {
 		block
 	);
 }
+
+export default AJAXPostsBlock;
