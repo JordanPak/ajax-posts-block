@@ -17355,9 +17355,13 @@ var PostTypesControl = Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__["with
       _onChange = _ref.onChange;
 
   // Build "viewable" options
-  var options = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.filter(types, 'viewable').map(function (_ref2) {
-    var labels = _ref2.labels,
+  var options = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.filter(types, function (_ref2) {
+    var viewable = _ref2.viewable,
         slug = _ref2.slug;
+    return viewable && slug !== 'attachment';
+  }).map(function (_ref3) {
+    var labels = _ref3.labels,
+        slug = _ref3.slug;
     return {
       label: labels.singular_name,
       value: slug
@@ -17365,11 +17369,12 @@ var PostTypesControl = Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__["with
   }); // Build options from post type slug values
 
 
-  var valueObjects = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.filter(types, function (type) {
-    return value.includes(type.slug);
-  }).map(function (_ref3) {
-    var labels = _ref3.labels,
-        slug = _ref3.slug;
+  var valueObjects = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.filter(types, function (_ref4) {
+    var slug = _ref4.slug;
+    return value.includes(slug);
+  }).map(function (_ref5) {
+    var labels = _ref5.labels,
+        slug = _ref5.slug;
     return {
       label: labels.singular_name,
       value: slug
@@ -17379,7 +17384,8 @@ var PostTypesControl = Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__["with
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["BaseControl"], {
     className: "apb-post-type-control",
     id: "apb-post-type-select",
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Filter to post types', 'ajax-posts-block')
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Filter to types', 'ajax-posts-block'),
+    help: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Leave empty to show all public types.', 'ajax-posts-block')
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(react_select__WEBPACK_IMPORTED_MODULE_2__["default"], {
     name: "apb-post-type-select",
     isMulti: true,
@@ -17394,7 +17400,7 @@ var PostTypesControl = Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__["with
 
       _onChange(values);
     },
-    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Leave empty to show all', 'ajax-posts-block')
+    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('All types', 'ajax-posts-block')
   }));
 });
 /* harmony default export */ __webpack_exports__["default"] = (PostTypesControl);
@@ -17740,10 +17746,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _wordpress_url__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/url */ "@wordpress/url");
-/* harmony import */ var _wordpress_url__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_url__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
-/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lodash */ "lodash");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _wordpress_url__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/url */ "@wordpress/url");
+/* harmony import */ var _wordpress_url__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_url__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_8__);
 
 
 
@@ -17766,6 +17774,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
  *
  * @since 1.0.0
  */
+
 
 
 
@@ -17858,21 +17867,19 @@ var AJAXPostsBlock = /*#__PURE__*/function (_Component) {
           categories = _this$props.categories,
           tags = _this$props.tags;
       var currentPage = this.state.currentPage;
-      var headers = null;
-      console.log("FETCHING PAGE ".concat(currentPage, " | "), "".concat(this.props.num, " PER PAGE"));
-      var args = {
+      var headers = null; // Build out args array, removing those that are empty
+
+      var args = lodash__WEBPACK_IMPORTED_MODULE_6___default.a.omitBy({
         apb_query: true,
         page: currentPage,
-        per_page: num
-      };
+        per_page: num,
+        type: postTypes || null,
+        categories: categories || null,
+        tags: tags || null
+      }, lodash__WEBPACK_IMPORTED_MODULE_6___default.a.isNil);
 
-      if (postTypes) {
-        args.type = postTypes;
-      }
-
-      console.log('ARGS', args);
-      _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_7___default()({
-        path: Object(_wordpress_url__WEBPACK_IMPORTED_MODULE_6__["addQueryArgs"])('/wp/v2/posts', args),
+      _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_8___default()({
+        path: Object(_wordpress_url__WEBPACK_IMPORTED_MODULE_7__["addQueryArgs"])('/wp/v2/posts', args),
         parse: false
       }).then(function (response) {
         headers = response.headers;
@@ -17995,8 +18002,8 @@ try {
     Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["render"])(Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(AJAXPostsBlock, {
       num: Number(num),
       postTypes: types,
-      categories: categories.split(','),
-      tags: tags.split(','),
+      categories: categories,
+      tags: tags,
       loadingEl: block.querySelector('.apb-loading')
     }), block);
   }

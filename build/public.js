@@ -319,10 +319,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _wordpress_url__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/url */ "@wordpress/url");
-/* harmony import */ var _wordpress_url__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_url__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
-/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lodash */ "lodash");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _wordpress_url__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/url */ "@wordpress/url");
+/* harmony import */ var _wordpress_url__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_url__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_8__);
 
 
 
@@ -345,6 +347,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
  *
  * @since 1.0.0
  */
+
 
 
 
@@ -437,21 +440,19 @@ var AJAXPostsBlock = /*#__PURE__*/function (_Component) {
           categories = _this$props.categories,
           tags = _this$props.tags;
       var currentPage = this.state.currentPage;
-      var headers = null;
-      console.log("FETCHING PAGE ".concat(currentPage, " | "), "".concat(this.props.num, " PER PAGE"));
-      var args = {
+      var headers = null; // Build out args array, removing those that are empty
+
+      var args = lodash__WEBPACK_IMPORTED_MODULE_6___default.a.omitBy({
         apb_query: true,
         page: currentPage,
-        per_page: num
-      };
+        per_page: num,
+        type: postTypes || null,
+        categories: categories || null,
+        tags: tags || null
+      }, lodash__WEBPACK_IMPORTED_MODULE_6___default.a.isNil);
 
-      if (postTypes) {
-        args.type = postTypes;
-      }
-
-      console.log('ARGS', args);
-      _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_7___default()({
-        path: Object(_wordpress_url__WEBPACK_IMPORTED_MODULE_6__["addQueryArgs"])('/wp/v2/posts', args),
+      _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_8___default()({
+        path: Object(_wordpress_url__WEBPACK_IMPORTED_MODULE_7__["addQueryArgs"])('/wp/v2/posts', args),
         parse: false
       }).then(function (response) {
         headers = response.headers;
@@ -574,8 +575,8 @@ try {
     Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["render"])(Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(AJAXPostsBlock, {
       num: Number(num),
       postTypes: types,
-      categories: categories.split(','),
-      tags: tags.split(','),
+      categories: categories,
+      tags: tags,
       loadingEl: block.querySelector('.apb-loading')
     }), block);
   }
@@ -638,6 +639,17 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports) {
 
 (function() { module.exports = window["wp"]["url"]; }());
+
+/***/ }),
+
+/***/ "lodash":
+/*!*************************!*\
+  !*** external "lodash" ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["lodash"]; }());
 
 /***/ })
 
