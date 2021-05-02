@@ -34,7 +34,11 @@ const PostTypesControl = withSelect( ( select ) => ( {
 		<BaseControl
 			className="apb-post-type-control"
 			id="apb-post-type-select"
-			label={ __( 'Filter to post types', 'ajax-posts-block' ) }
+			label={ __( 'Filter to types', 'ajax-posts-block' ) }
+			help={ __(
+				'Leave empty to show all public types.',
+				'ajax-posts-block'
+			) }
 		>
 			<Select
 				name="apb-post-type-select"
@@ -47,10 +51,7 @@ const PostTypesControl = withSelect( ( select ) => ( {
 					values = values.map( ( option ) => option.value );
 					onChange( values );
 				} }
-				placeholder={ __(
-					'Leave empty to show all',
-					'ajax-posts-block'
-				) }
+				placeholder={ __( 'All types', 'ajax-posts-block' ) }
 			/>
 		</BaseControl>
 	);
