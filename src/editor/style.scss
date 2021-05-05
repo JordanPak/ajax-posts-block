@@ -1,8 +1,28 @@
 /**
- * Global helpers
+ * Global front end + editor styling
  *
  * @since 1.0.0
  */
+
+:root {
+	// base spacing units since rems don't always translate well between themes
+	--apb-bsu: 16px;
+	--apb-bsu-x2: calc(var(--apb-bsu) * 2);
+	--apb-bsu-x3: calc(var(--apb-bsu) * 3);
+	--apb-bsu-x4: calc(var(--apb-bsu) * 4);
+	--apb-bsu-half: calc(var(--apb-bsu) / 2);
+
+	// font sizes (--global--* is standard set by Twenty Twenty-One
+	--apb-font-size-medium: var(--global--font-size-base, 20px);
+}
+
+[data-apb-icon] {
+	display: inline-block;
+	width: 1rem;
+	width: var(--fse-font-size-medium);
+	height: 1em;
+	vertical-align: -0.125em;
+}
 
 [data-apb-icon-spin="true"] {
 	animation: apb-icon-spin 2s linear infinite;
