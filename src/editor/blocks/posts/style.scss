@@ -23,10 +23,20 @@
 	[data-apb-icon]:last-child {
 		margin-left: var(--apb-bsu-half);
 	}
+
+	&[disabled] {
+		opacity: 0.333;
+		cursor: default;
+	}
 }
 
 /* stylelint-disable selector-class-pattern */
 .wp-block-button .apb-prev-next-button.wp-block-button__link {
 	padding: var(--apb-bsu-half) var(--apb-bsu);
+
+	&[disabled]:hover,
+	&[disabled]:focus {
+		text-decoration: none;
+	}
 }
 /* stylelint-enable selector-class-pattern */

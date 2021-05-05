@@ -67,10 +67,17 @@
 .apb-prev-next-button [data-apb-icon]:last-child {
   margin-left: var(--apb-bsu-half);
 }
+.apb-prev-next-button[disabled] {
+  opacity: 0.333;
+  cursor: default;
+}
 
 /* stylelint-disable selector-class-pattern */
 .wp-block-button .apb-prev-next-button.wp-block-button__link {
   padding: var(--apb-bsu-half) var(--apb-bsu);
+}
+.wp-block-button .apb-prev-next-button.wp-block-button__link[disabled]:hover, .wp-block-button .apb-prev-next-button.wp-block-button__link[disabled]:focus {
+  text-decoration: none;
 }
 
 /* stylelint-enable selector-class-pattern */
