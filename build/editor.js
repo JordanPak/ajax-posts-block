@@ -17660,6 +17660,76 @@ var getApiOptions = function getApiOptions(endpoint, search, callback) {
 
 /***/ }),
 
+/***/ "./src/icons/angle-left.svg":
+/*!**********************************!*\
+  !*** ./src/icons/angle-left.svg ***!
+  \**********************************/
+/*! exports provided: default, ReactComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReactComponent", function() { return SvgAngleLeft; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var _path;
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
+
+function SvgAngleLeft(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("svg", _extends({
+    "aria-hidden": "true",
+    "data-apb-icon": "angle-left",
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 192 512"
+  }, props), _path || (_path = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("path", {
+    fill: "currentColor",
+    d: "M4.2 247.5L151 99.5c4.7-4.7 12.3-4.7 17 0l19.8 19.8c4.7 4.7 4.7 12.3 0 17L69.3 256l118.5 119.7c4.7 4.7 4.7 12.3 0 17L168 412.5c-4.7 4.7-12.3 4.7-17 0L4.2 264.5c-4.7-4.7-4.7-12.3 0-17z"
+  })));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = ("data:image/svg+xml;base64,PHN2ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgZm9jdXNhYmxlPSJmYWxzZSIgZGF0YS1hcGItaWNvbj0iYW5nbGUtbGVmdCIgcm9sZT0iaW1nIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOTIgNTEyIj48cGF0aCBmaWxsPSJjdXJyZW50Q29sb3IiIGQ9Ik00LjIgMjQ3LjVMMTUxIDk5LjVjNC43LTQuNyAxMi4zLTQuNyAxNyAwbDE5LjggMTkuOGM0LjcgNC43IDQuNyAxMi4zIDAgMTdMNjkuMyAyNTZsMTE4LjUgMTE5LjdjNC43IDQuNyA0LjcgMTIuMyAwIDE3TDE2OCA0MTIuNWMtNC43IDQuNy0xMi4zIDQuNy0xNyAwTDQuMiAyNjQuNWMtNC43LTQuNy00LjctMTIuMyAwLTE3eiI+PC9wYXRoPjwvc3ZnPg==");
+
+
+/***/ }),
+
+/***/ "./src/icons/angle-right.svg":
+/*!***********************************!*\
+  !*** ./src/icons/angle-right.svg ***!
+  \***********************************/
+/*! exports provided: default, ReactComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReactComponent", function() { return SvgAngleRight; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var _path;
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
+
+function SvgAngleRight(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("svg", _extends({
+    "aria-hidden": "true",
+    "data-apb-icon": "angle-right",
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 192 512"
+  }, props), _path || (_path = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("path", {
+    fill: "currentColor",
+    d: "M187.8 264.5L41 412.5c-4.7 4.7-12.3 4.7-17 0L4.2 392.7c-4.7-4.7-4.7-12.3 0-17L122.7 256 4.2 136.3c-4.7-4.7-4.7-12.3 0-17L24 99.5c4.7-4.7 12.3-4.7 17 0l146.8 148c4.7 4.7 4.7 12.3 0 17z"
+  })));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = ("data:image/svg+xml;base64,PHN2ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgZm9jdXNhYmxlPSJmYWxzZSIgZGF0YS1hcGItaWNvbj0iYW5nbGUtcmlnaHQiIHJvbGU9ImltZyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMTkyIDUxMiI+PHBhdGggZmlsbD0iY3VycmVudENvbG9yIiBkPSJNMTg3LjggMjY0LjVMNDEgNDEyLjVjLTQuNyA0LjctMTIuMyA0LjctMTcgMEw0LjIgMzkyLjdjLTQuNy00LjctNC43LTEyLjMgMC0xN0wxMjIuNyAyNTYgNC4yIDEzNi4zYy00LjctNC43LTQuNy0xMi4zIDAtMTdMMjQgOTkuNWM0LjctNC43IDEyLjMtNC43IDE3IDBsMTQ2LjggMTQ4YzQuNyA0LjcgNC43IDEyLjMgMCAxN3oiPjwvcGF0aD48L3N2Zz4=");
+
+
+/***/ }),
+
 /***/ "./src/icons/index.js":
 /*!****************************!*\
   !*** ./src/icons/index.js ***!
@@ -17670,14 +17740,20 @@ var getApiOptions = function getApiOptions(endpoint, search, callback) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _loading_svg__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./loading.svg */ "./src/icons/loading.svg");
+/* harmony import */ var _angle_left_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./angle-left.svg */ "./src/icons/angle-left.svg");
+/* harmony import */ var _angle_right_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./angle-right.svg */ "./src/icons/angle-right.svg");
 /**
  * Prep icons
  *
  * @since 1.0.0
  */
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  loading: _loading_svg__WEBPACK_IMPORTED_MODULE_0__["ReactComponent"]
+  loading: _loading_svg__WEBPACK_IMPORTED_MODULE_0__["ReactComponent"],
+  angleLeft: _angle_left_svg__WEBPACK_IMPORTED_MODULE_1__["ReactComponent"],
+  angleRight: _angle_right_svg__WEBPACK_IMPORTED_MODULE_2__["ReactComponent"]
 });
 
 /***/ }),
