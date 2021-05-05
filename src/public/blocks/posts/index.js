@@ -110,10 +110,8 @@ class AJAXPostsBlock extends Component {
 				return response.json();
 			} )
 			.then( ( posts ) => {
-				const totalPosts = Number( headers.get( 'x-wp-total' ) ),
-					totalPages = Number( headers.get( 'x-wp-totalpages' ) );
-
-				console.log( 'total pages', totalPages );
+				// to get total posts: Number( headers.get( 'x-wp-total' ) )
+				const totalPages = Number( headers.get( 'x-wp-totalpages' ) );
 
 				this.setState( {
 					posts: posts.length > 0 ? posts : false,
@@ -142,6 +140,9 @@ class AJAXPostsBlock extends Component {
 	/**
 	 * Page to older posts
 	 *
+	 * +1 is kinda counter-intuive but our posts are ordered from newest to
+	 * oldest.
+	 *
 	 * @since 1.0.0
 	 */
 	doPreviousPage() {
@@ -150,6 +151,9 @@ class AJAXPostsBlock extends Component {
 
 	/**
 	 * Page to newer posts
+	 *
+	 * -1 is kinda counter-intuive but our posts are ordered from newest to
+	 * oldest.
 	 *
 	 * @since 1.0.0
 	 */

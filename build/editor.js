@@ -17201,9 +17201,6 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])('aja
   attributes: {
     num: {
       type: 'number',
-      // source: 'attribute', // @todo try to make this work
-      // selector: '[data-num]',
-      // attribute: 'data-num',
       default: 6
     },
     categories: {
@@ -17885,9 +17882,8 @@ var AJAXPostsBlock = /*#__PURE__*/function (_Component) {
         headers = response.headers;
         return response.json();
       }).then(function (posts) {
-        var totalPosts = Number(headers.get('x-wp-total')),
-            totalPages = Number(headers.get('x-wp-totalpages'));
-        console.log('total pages', totalPages);
+        // to get total posts: Number( headers.get( 'x-wp-total' ) )
+        var totalPages = Number(headers.get('x-wp-totalpages'));
 
         _this2.setState({
           posts: posts.length > 0 ? posts : false,
@@ -17917,6 +17913,9 @@ var AJAXPostsBlock = /*#__PURE__*/function (_Component) {
     /**
      * Page to older posts
      *
+     * +1 is kinda counter-intuive but our posts are ordered from newest to
+     * oldest.
+     *
      * @since 1.0.0
      */
 
@@ -17927,6 +17926,9 @@ var AJAXPostsBlock = /*#__PURE__*/function (_Component) {
     }
     /**
      * Page to newer posts
+     *
+     * -1 is kinda counter-intuive but our posts are ordered from newest to
+     * oldest.
      *
      * @since 1.0.0
      */
