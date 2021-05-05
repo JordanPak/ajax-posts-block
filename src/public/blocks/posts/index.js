@@ -183,12 +183,14 @@ class AJAXPostsBlock extends Component {
 					{ totalPages > 1 && (
 						<>
 							<button
+								className="wp-block-button__link"
 								disabled={ currentPage === totalPages }
 								onClick={ this.doPreviousPage.bind( this ) }
 							>
 								{ apbHelper.previous }
 							</button>
 							<button
+								className="wp-block-button__link"
 								disabled={ currentPage === 1 }
 								onClick={ this.doNextPage.bind( this ) }
 							>

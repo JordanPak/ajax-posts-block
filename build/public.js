@@ -534,9 +534,11 @@ var AJAXPostsBlock = /*#__PURE__*/function (_Component) {
             key: index
           }, post.type, ": ", post.title.rendered);
         }), totalPages > 1 && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("button", {
+          className: "wp-block-button__link",
           disabled: currentPage === totalPages,
           onClick: this.doPreviousPage.bind(this)
         }, apbHelper.previous), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("button", {
+          className: "wp-block-button__link",
           disabled: currentPage === 1,
           onClick: this.doNextPage.bind(this)
         }, apbHelper.next)));
