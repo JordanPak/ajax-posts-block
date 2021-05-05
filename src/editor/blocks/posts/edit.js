@@ -8,20 +8,12 @@ import { __ } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, RangeControl } from '@wordpress/components';
 
-import icons from '../../../icons';
-
+import loading from '../../components/loading';
 import PostTypesControl from '../../components/post-types-control';
 import CategoriesControl from '../../components/categories-control';
 import TagsControl from '../../components/tags-control';
 
 import AJAXPostsBlock from '../../../public/blocks/posts';
-
-const loading = (
-	<p className="apb-loading">
-		{ __( 'Loading', 'ajax-posts-block' ) }
-		{ icons.loading() }
-	</p>
-);
 
 export default function Edit( { attributes, setAttributes } ) {
 	const { num, types, categories, tags } = attributes;
