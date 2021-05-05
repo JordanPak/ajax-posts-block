@@ -1,0 +1,10 @@
+/**
+ * AJAX posts block styling
+ *
+ * @since 1.0.0
+ */
+.wp-block-ajax-posts-block-posts {
+	position: relative; // for loader
+	min-height: 200px;
+	box-shadow: inset 0 0 0 2px lightblue;
+}
