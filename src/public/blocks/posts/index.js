@@ -10,7 +10,7 @@ import { render, Component } from '@wordpress/element';
 import { addQueryArgs } from '@wordpress/url';
 import apiFetch from '@wordpress/api-fetch';
 
-import icons from '../../../icons';
+import PrevNext from './prev-next';
 
 class AJAXPostsBlock extends Component {
 	/**
@@ -182,26 +182,12 @@ class AJAXPostsBlock extends Component {
 							</p>
 						);
 					} ) }
-					{ totalPages > 1 && (
-						<>
-							<button
-								className="wp-block-button__link"
-								disabled={ currentPage === totalPages }
-								onClick={ this.doPreviousPage.bind( this ) }
-							>
-								{ icons.angleLeft() }
-								{ apbHelper.previous }
-							</button>
-							<button
-								className="wp-block-button__link"
-								disabled={ currentPage === 1 }
-								onClick={ this.doNextPage.bind( this ) }
-							>
-								{ apbHelper.next }
-								{ icons.angleRight() }
-							</button>
-						</>
-					) }
+					<PrevNext
+						pages={ totalPages }
+						currentPage={ currentPage }
+						onPrevious={ this.doPreviousPage.bind( this ) }
+						onNext={ this.doNextPage.bind( this ) }
+					/>
 				</>
 			);
 		}
@@ -221,7 +207,7 @@ class AJAXPostsBlock extends Component {
 
 		return (
 			<>
-				<h2>LOOK AT THIS BRICK</h2>
+				{/* { this.renderLoader() } */}
 				{ hasLoaded ? this.renderPosts() : this.renderLoader() }
 			</>
 		);

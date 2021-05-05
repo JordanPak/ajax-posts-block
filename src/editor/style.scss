@@ -13,6 +13,7 @@
 	--apb-bsu-half: calc(var(--apb-bsu) / 2);
 
 	// font sizes (--global--* is standard set by Twenty Twenty-One
+	--apb-font-size-regular: var(--global--font-size-sm, 16px);
 	--apb-font-size-medium: var(--global--font-size-base, 20px);
 }
 
