@@ -17825,6 +17825,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_url__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_url__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
 /* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../icons */ "./src/icons/index.js");
 
 
 
@@ -17847,6 +17848,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
  *
  * @since 1.0.0
  */
+
 
 
 
@@ -18037,11 +18039,11 @@ var AJAXPostsBlock = /*#__PURE__*/function (_Component) {
           className: "wp-block-button__link",
           disabled: currentPage === totalPages,
           onClick: this.doPreviousPage.bind(this)
-        }, apbHelper.previous), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("button", {
+        }, _icons__WEBPACK_IMPORTED_MODULE_9__["default"].angleLeft(), apbHelper.previous), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("button", {
           className: "wp-block-button__link",
           disabled: currentPage === 1,
           onClick: this.doNextPage.bind(this)
-        }, apbHelper.next)));
+        }, apbHelper.next, _icons__WEBPACK_IMPORTED_MODULE_9__["default"].angleRight())));
       }
 
       return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("p", null, "NOTHING BRO");

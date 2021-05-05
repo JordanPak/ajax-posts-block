@@ -10,6 +10,8 @@ import { render, Component } from '@wordpress/element';
 import { addQueryArgs } from '@wordpress/url';
 import apiFetch from '@wordpress/api-fetch';
 
+import icons from '../../../icons';
+
 class AJAXPostsBlock extends Component {
 	/**
 	 * Spin up component
@@ -187,6 +189,7 @@ class AJAXPostsBlock extends Component {
 								disabled={ currentPage === totalPages }
 								onClick={ this.doPreviousPage.bind( this ) }
 							>
+								{ icons.angleLeft() }
 								{ apbHelper.previous }
 							</button>
 							<button
@@ -195,6 +198,7 @@ class AJAXPostsBlock extends Component {
 								onClick={ this.doNextPage.bind( this ) }
 							>
 								{ apbHelper.next }
+								{ icons.angleRight() }
 							</button>
 						</>
 					) }
