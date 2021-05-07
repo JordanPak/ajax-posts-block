@@ -10,6 +10,7 @@ import { render, Component } from '@wordpress/element';
 import { addQueryArgs } from '@wordpress/url';
 import apiFetch from '@wordpress/api-fetch';
 
+import Post from './post';
 import PrevNext from './prev-next';
 
 class AJAXPostsBlock extends Component {
@@ -92,7 +93,7 @@ class AJAXPostsBlock extends Component {
 	 */
 	getPosts() {
 		const { num, postTypes, categories, tags } = this.props;
-		const { currentPage, height } = this.state;
+		const { currentPage } = this.state;
 
 		let headers = null;
 
@@ -105,6 +106,7 @@ class AJAXPostsBlock extends Component {
 				type: postTypes || null,
 				categories: categories || null,
 				tags: tags || null,
+				_embed: true,
 			},
 			_.isNil
 		);
@@ -183,8 +185,13 @@ class AJAXPostsBlock extends Component {
 					<ul className="apb-posts-list">
 						{ posts.map( ( post, index ) => {
 							return (
-								<li key={ index } className="apb-post">
-									{ post.type }: { post.title.rendered }
+								<li key={ index }>
+									<Post
+										title={ post.title }
+										link={ post.link }
+										date={ post.date }
+										embeds={ post._embedded }
+									/>
 								</li>
 							);
 						} ) }
