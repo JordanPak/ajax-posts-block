@@ -17219,6 +17219,9 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])('aja
   icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_2__["info"],
   category: 'widgets',
   keywords: [Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('posts'), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('content'), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('ajax')],
+  supports: {
+    align: ['wide']
+  },
   attributes: {
     num: {
       type: 'number',

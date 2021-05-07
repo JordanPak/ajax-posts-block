@@ -24,6 +24,10 @@ registerBlockType( 'ajax-posts-block/posts', {
 	category: 'widgets',
 	keywords: [ __( 'posts' ), __( 'content' ), __( 'ajax' ) ],
 
+	supports: {
+		align: [ 'wide' ],
+	},
+
 	attributes: {
 		num: {
 			type: 'number',
