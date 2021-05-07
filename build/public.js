@@ -512,7 +512,8 @@ var AJAXPostsBlock = /*#__PURE__*/function (_Component) {
     _this = _super.call(this, props);
     _this.state = {
       hasLoaded: false,
-      currentPage: 1
+      currentPage: 1,
+      height: 0
     };
     return _this;
   }
@@ -541,6 +542,13 @@ var AJAXPostsBlock = /*#__PURE__*/function (_Component) {
       // Grab new posts if the page or other props changed.
       if (prevState.currentPage !== this.state.currentPage || prevProps.num !== this.props.num || prevProps.postTypes !== this.props.postTypes || prevProps.categories !== this.props.categories || prevProps.tags !== this.props.tags) {
         this.getPosts();
+      } // Set initial minimum height so paging is less jarring.
+
+
+      if (this.state.height === 0) {
+        this.setState({
+          height: this.heightSensor.clientHeight
+        });
       }
     }
     /**
@@ -579,7 +587,9 @@ var AJAXPostsBlock = /*#__PURE__*/function (_Component) {
           postTypes = _this$props.postTypes,
           categories = _this$props.categories,
           tags = _this$props.tags;
-      var currentPage = this.state.currentPage;
+      var _this$state = this.state,
+          currentPage = _this$state.currentPage,
+          height = _this$state.height;
       var headers = null; // Build out args array, removing those that are empty
 
       var args = lodash__WEBPACK_IMPORTED_MODULE_6___default.a.omitBy({
@@ -663,17 +673,20 @@ var AJAXPostsBlock = /*#__PURE__*/function (_Component) {
   }, {
     key: "renderPosts",
     value: function renderPosts() {
-      var _this$state = this.state,
-          posts = _this$state.posts,
-          currentPage = _this$state.currentPage,
-          totalPages = _this$state.totalPages;
+      var _this$state2 = this.state,
+          posts = _this$state2.posts,
+          currentPage = _this$state2.currentPage,
+          totalPages = _this$state2.totalPages;
 
       if (posts.length > 0) {
-        return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("h4", null, "Here are posts"), posts.map(function (post, index) {
-          return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("p", {
-            key: index
+        return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("ul", {
+          className: "apb-posts-list"
+        }, posts.map(function (post, index) {
+          return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("li", {
+            key: index,
+            className: "apb-post"
           }, post.type, ": ", post.title.rendered);
-        }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_prev_next__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_prev_next__WEBPACK_IMPORTED_MODULE_9__["default"], {
           pages: totalPages,
           currentPage: currentPage,
           onPrevious: this.doPreviousPage.bind(this),
@@ -694,8 +707,22 @@ var AJAXPostsBlock = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var hasLoaded = this.state.hasLoaded;
-      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["Fragment"], null, hasLoaded ? this.renderPosts() : this.renderLoader());
+      var _this3 = this;
+
+      var _this$state3 = this.state,
+          hasLoaded = _this$state3.hasLoaded,
+          height = _this$state3.height;
+      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
+        className: "apb-posts-block-wrap",
+        style: {
+          minHeight: height
+        }
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
+        className: "apb-height-sensor",
+        ref: function ref(heightSensor) {
+          _this3.heightSensor = heightSensor;
+        }
+      }), hasLoaded ? this.renderPosts() : this.renderLoader());
     }
   }]);
 

@@ -50,8 +50,25 @@
  */
 .wp-block-ajax-posts-block-posts {
   position: relative;
-  min-height: 200px;
   box-shadow: inset 0 0 0 2px lightblue;
+}
+
+.apb-posts-block-wrap {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 1fr auto;
+  grid-template-rows: 1fr auto;
+  min-height: 200px;
+}
+.apb-posts-block-wrap > * {
+  position: relative;
+}
+
+.apb-posts-list,
+.apb-post {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .apb-prev-next {
@@ -81,6 +98,13 @@
 }
 
 /* stylelint-enable selector-class-pattern */
+.apb-height-sensor {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
 /**
  * Loading component
  *

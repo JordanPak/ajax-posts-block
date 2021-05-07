@@ -26,6 +26,7 @@ class AJAXPostsBlock extends Component {
 		this.state = {
 			hasLoaded: false,
 			currentPage: 1,
+			height: 0,
 		};
 	}
 
@@ -54,6 +55,11 @@ class AJAXPostsBlock extends Component {
 			prevProps.tags !== this.props.tags
 		) {
 			this.getPosts();
+		}
+
+		// Set initial minimum height so paging is less jarring.
+		if ( this.state.height === 0 ) {
+			this.setState( { height: this.heightSensor.clientHeight } );
 		}
 	}
 
@@ -86,7 +92,7 @@ class AJAXPostsBlock extends Component {
 	 */
 	getPosts() {
 		const { num, postTypes, categories, tags } = this.props;
-		const { currentPage } = this.state;
+		const { currentPage, height } = this.state;
 
 		let headers = null;
 
@@ -174,14 +180,15 @@ class AJAXPostsBlock extends Component {
 		if ( posts.length > 0 ) {
 			return (
 				<>
-					<h4>Here are posts</h4>
-					{ posts.map( ( post, index ) => {
-						return (
-							<p key={ index }>
-								{ post.type }: { post.title.rendered }
-							</p>
-						);
-					} ) }
+					<ul className="apb-posts-list">
+						{ posts.map( ( post, index ) => {
+							return (
+								<li key={ index } className="apb-post">
+									{ post.type }: { post.title.rendered }
+								</li>
+							);
+						} ) }
+					</ul>
 					<PrevNext
 						pages={ totalPages }
 						currentPage={ currentPage }
@@ -203,13 +210,21 @@ class AJAXPostsBlock extends Component {
 	 * @return {Object} Main block contents.
 	 */
 	render() {
-		const { hasLoaded } = this.state;
+		const { hasLoaded, height } = this.state;
 
 		return (
-			<>
-				{/* { this.renderLoader() } */}
+			<div
+				className="apb-posts-block-wrap"
+				style={ { minHeight: height } }
+			>
+				<div
+					className="apb-height-sensor"
+					ref={ ( heightSensor ) => {
+						this.heightSensor = heightSensor;
+					} }
+				/>
 				{ hasLoaded ? this.renderPosts() : this.renderLoader() }
-			</>
+			</div>
 		);
 	}
 }
