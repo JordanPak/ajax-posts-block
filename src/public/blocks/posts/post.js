@@ -5,8 +5,9 @@
  */
 
 import { __, sprintf } from '@wordpress/i18n';
+import { RawHTML } from '@wordpress/element';
 
-export default ( { title, link, date, embeds } ) => {
+export default ( { title, link, date, excerpt, embeds } ) => {
 	date = new Date( date );
 
 	let ftMedia = false,
@@ -51,6 +52,9 @@ export default ( { title, link, date, embeds } ) => {
 						) }
 					</span>
 				</div>
+				<RawHTML className="apb-post-excerpt">
+					{ excerpt.rendered }
+				</RawHTML>
 			</div>
 		</a>
 	);

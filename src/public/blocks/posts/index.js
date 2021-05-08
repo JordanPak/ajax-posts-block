@@ -190,6 +190,7 @@ class AJAXPostsBlock extends Component {
 										title={ post.title }
 										link={ post.link }
 										date={ post.date }
+										excerpt={ post.excerpt }
 										embeds={ post._embedded }
 									/>
 								</li>

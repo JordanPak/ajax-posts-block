@@ -18108,6 +18108,7 @@ var AJAXPostsBlock = /*#__PURE__*/function (_Component) {
             title: post.title,
             link: post.link,
             date: post.date,
+            excerpt: post.excerpt,
             embeds: post._embedded
           }));
         })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_prev_next__WEBPACK_IMPORTED_MODULE_10__["default"], {
@@ -18206,10 +18207,12 @@ __webpack_require__.r(__webpack_exports__);
  * @since 1.0.0
  */
 
+
 /* harmony default export */ __webpack_exports__["default"] = (function (_ref) {
   var title = _ref.title,
       link = _ref.link,
       date = _ref.date,
+      excerpt = _ref.excerpt,
       embeds = _ref.embeds;
   date = new Date(date);
   var ftMedia = false,
@@ -18243,7 +18246,9 @@ __webpack_require__.r(__webpack_exports__);
     month: 'long',
     day: 'numeric',
     year: 'numeric'
-  }))))));
+  })))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["RawHTML"], {
+    className: "apb-post-excerpt"
+  }, excerpt.rendered)));
 });
 
 /***/ }),
