@@ -806,8 +806,10 @@ __webpack_require__.r(__webpack_exports__);
   }
 
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("a", {
-    href: link
+    href: link,
+    className: "apb-post"
   }, ftSize && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
+    className: "apb-post-thumbnail",
     src: ftSize.source_url,
     width: ftSize.width,
     height: ftSize.height,
@@ -827,7 +829,7 @@ __webpack_require__.r(__webpack_exports__);
     month: 'long',
     day: 'numeric',
     year: 'numeric'
-  })))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["RawHTML"], {
+  })))), excerpt.rendered && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["RawHTML"], {
     className: "apb-post-excerpt"
   }, excerpt.rendered)));
 });

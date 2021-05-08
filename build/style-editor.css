@@ -9,8 +9,57 @@
   --apb-bsu-x3: calc(var(--apb-bsu) * 3);
   --apb-bsu-x4: calc(var(--apb-bsu) * 4);
   --apb-bsu-half: calc(var(--apb-bsu) / 2);
-  --apb-font-size-regular: var(--global--font-size-sm, 16px);
-  --apb-font-size-medium: var(--global--font-size-base, 20px);
+  --apb-font-size-regular: var(--global--font-size-sm, 18px);
+  --apb-font-size-medium: var(--global--font-size-base, 22px);
+  --apb-font-size-large: var(--IDK-UPDATE-THIS, 32px);
+  --apb-transition-timing-function: ease-in-out;
+  --apb-transition-duration: 150ms;
+}
+
+.apb-post-title {
+  font-size: var(--IDK-UPDATE-THIS, 32px);
+  font-size: var(--apb-font-size-large);
+}
+.apb-post-title.apb-post-title {
+  margin: 0;
+}
+
+.apb-post-meta {
+  font-size: var(--global--font-size-sm, 18px);
+  font-size: var(--apb-font-size-regular);
+  font-weight: 700;
+}
+
+.apb-post-excerpt {
+  margin-top: 16px;
+  margin-top: var(--apb-bsu);
+}
+.apb-post-excerpt p {
+  margin: 0;
+  font-size: var(--global--font-size-sm, 18px);
+  font-size: var(--apb-font-size-regular);
+}
+.apb-post-excerpt p + p {
+  margin-top: calc(16px / 2);
+  margin-top: var(--apb-bsu-half);
+}
+
+.apb-post-thumbnail {
+  margin: 0 0 16px;
+  margin: 0 0 var(--apb-bsu);
+  width: 100%;
+}
+.apb-post-thumbnail.apb-post-thumbnail {
+  display: block;
+}
+@media (min-width: 480px) {
+  .apb-post-thumbnail {
+    float: right;
+    margin: 0 0 16px 16px;
+    margin: 0 0 var(--apb-bsu) var(--apb-bsu);
+    width: auto;
+    max-width: 42.5%;
+  }
 }
 
 [data-apb-icon] {
@@ -50,7 +99,6 @@
  */
 .wp-block-ajax-posts-block-posts {
   position: relative;
-  box-shadow: inset 0 0 0 2px lightblue;
 }
 
 .apb-posts-block-wrap {
@@ -69,6 +117,25 @@
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+.apb-posts-list {
+  display: -ms-grid;
+  display: grid;
+  align-content: start;
+  gap: var(--apb-bsu-x2);
+}
+.apb-posts-list a {
+  display: block;
+  text-decoration: none;
+  opacity: 1;
+  transition: opacity var(--apb-transition-timing-function) var(--apb-transition-duration);
+}
+.apb-posts-list a, .apb-posts-list a:visited, .apb-posts-list a:hover, .apb-posts-list a:focus {
+  color: inherit;
+}
+.apb-posts-list a:hover, .apb-posts-list a:focus {
+  opacity: 0.725;
 }
 
 .apb-prev-next {

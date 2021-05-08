@@ -5,7 +5,6 @@
  */
 .wp-block-ajax-posts-block-posts {
 	position: relative; // for loader
-	box-shadow: inset 0 0 0 2px lightblue;
 }
 
 .apb-posts-block-wrap {
@@ -24,6 +23,32 @@
 	padding: 0;
 	list-style: none;
 }
+
+.apb-posts-list {
+	display: grid;
+	align-content: start;
+	gap: var(--apb-bsu-x2);
+
+	a {
+		display: block;
+		text-decoration: none;
+		opacity: 1;
+		transition: opacity var(--apb-transition-timing-function) var(--apb-transition-duration);
+
+		&,
+		&:visited,
+		&:hover,
+		&:focus {
+			color: inherit;
+		}
+
+		&:hover,
+		&:focus {
+			opacity: 0.725;
+		}
+	}
+}
+
 
 .apb-prev-next {
 	justify-content: center;

@@ -21,9 +21,10 @@ export default ( { title, link, date, excerpt, embeds } ) => {
 	}
 
 	return (
-		<a href={ link }>
+		<a href={ link } className="apb-post">
 			{ ftSize && (
 				<img
+					className="apb-post-thumbnail"
 					src={ ftSize.source_url }
 					width={ ftSize.width }
 					height={ ftSize.height }
@@ -52,9 +53,11 @@ export default ( { title, link, date, excerpt, embeds } ) => {
 						) }
 					</span>
 				</div>
-				<RawHTML className="apb-post-excerpt">
-					{ excerpt.rendered }
-				</RawHTML>
+				{ excerpt.rendered && (
+					<RawHTML className="apb-post-excerpt">
+						{ excerpt.rendered }
+					</RawHTML>
+				) }
 			</div>
 		</a>
 	);

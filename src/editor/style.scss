@@ -13,8 +13,58 @@
 	--apb-bsu-half: calc(var(--apb-bsu) / 2);
 
 	// font sizes (--global--* is standard set by Twenty Twenty-One
-	--apb-font-size-regular: var(--global--font-size-sm, 16px);
-	--apb-font-size-medium: var(--global--font-size-base, 20px);
+	--apb-font-size-regular: var(--global--font-size-sm, 18px);
+	--apb-font-size-medium: var(--global--font-size-base, 22px);
+	--apb-font-size-large: var(--IDK-UPDATE-THIS, 32px);
+
+	// transitions
+	--apb-transition-timing-function: ease-in-out;
+	--apb-transition-duration: 150ms;
+}
+
+.apb-post-title {
+	font-size: var(--apb-font-size-large);
+
+	// margin resets (some extra points are needed for theme selectors)
+	&.apb-post-title {
+		margin: 0;
+	}
+}
+
+.apb-post-meta {
+	font-size: var(--apb-font-size-regular);
+	font-weight: 700;
+	// text-transform: uppercase;
+}
+
+.apb-post-excerpt {
+	margin-top: var(--apb-bsu);
+
+	p {
+		margin: 0;
+		font-size: var(--apb-font-size-regular);
+
+		+ p {
+			margin-top: var(--apb-bsu-half);
+		}
+	}
+}
+
+.apb-post-thumbnail {
+	margin: 0 0 var(--apb-bsu);
+	width: 100%;
+
+	// extra point for Twenty Twenty entry-content list styling
+	&.apb-post-thumbnail {
+		display: block;
+	}
+
+	@media (min-width: 480px) {
+		float: right;
+		margin: 0 0 var(--apb-bsu) var(--apb-bsu);
+		width: auto;
+		max-width: 42.5%;
+	}
 }
 
 [data-apb-icon] {
