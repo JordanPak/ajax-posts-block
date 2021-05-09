@@ -223,7 +223,7 @@ class AJAXPostsBlock extends Component {
 			);
 		}
 
-		return <p>NOTHING BRO</p>;
+		return <p className="apb-no-results">{ apbHelper.i18n.noResults }</p>;
 	}
 
 	/**

@@ -91,8 +91,9 @@ class Blocks {
 			'apbHelper',
 			[
 				'i18n'  => [
-					'previous' => __( 'Older', 'ajax-posts-block' ),
-					'next'     => __( 'Newer', 'ajax-posts-block' ),
+					'noResults' => __( "There isn't anything to see right now.", 'ajax-posts-block' ),
+					'previous'  => __( 'Older', 'ajax-posts-block' ),
+					'next'      => __( 'Newer', 'ajax-posts-block' ),
 				],
 				'types' => wp_list_pluck( get_post_types( [ 'show_in_rest' => true ], 'objects' ), 'label' ),
 			]
