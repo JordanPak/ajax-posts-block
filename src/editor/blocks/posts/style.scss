@@ -97,6 +97,12 @@
 }
 /* stylelint-enable selector-class-pattern */
 
+.apb-is-loading .apb-posts-list,
+.apb-is-loading .apb-prev-next,
+.apb-is-loading .apb-no-results {
+	opacity: 0;
+}
+
 .apb-height-sensor {
 	position: absolute;
 	top: 0;
