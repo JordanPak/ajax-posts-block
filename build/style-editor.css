@@ -22,11 +22,11 @@
   }
 }
 .apb-post-title {
-  clear: none;
   font-size: var(--global--font-size-xl, 28px);
   font-size: var(--apb-font-size-large);
 }
 .apb-post-title.apb-post-title {
+  clear: none;
   margin: 0;
 }
 

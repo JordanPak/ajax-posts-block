@@ -30,11 +30,11 @@
 }
 
 .apb-post-title {
-	clear: none;
 	font-size: var(--apb-font-size-large);
 
 	// margin resets (some extra points are needed for theme selectors)
 	&.apb-post-title {
+		clear: none;
 		margin: 0;
 	}
 }

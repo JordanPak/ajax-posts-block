@@ -1,0 +1,23 @@
+/**
+ * Editor adjustments/fixes for global styling
+ *
+ * @since 1.0.0
+ */
+
+.editor-styles-wrapper {
+
+	// general margin/padding resets
+	.apb-post-excerpt p,
+	.apb-posts-list {
+		margin: 0;
+	}
+
+	.apb-posts-list {
+		padding: 0;
+	}
+
+	// even further spec. for aggressive theme styling
+	.wp-block .apb-post-title {
+		margin: 0;
+	}
+}
