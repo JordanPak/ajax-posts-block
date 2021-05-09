@@ -16,7 +16,7 @@ export default ( { pages, currentPage, onPrevious, onNext } ) => {
 					onClick={ onPrevious }
 				>
 					{ icons.angleLeft() }
-					<span>{ apbHelper.previous }</span>
+					<span>{ apbHelper.i18n.previous }</span>
 				</button>
 			</div>
 
@@ -26,7 +26,7 @@ export default ( { pages, currentPage, onPrevious, onNext } ) => {
 					disabled={ currentPage === 1 }
 					onClick={ onNext }
 				>
-					<span>{ apbHelper.next }</span>
+					<span>{ apbHelper.i18n.next }</span>
 					{ icons.angleRight() }
 				</button>
 			</div>

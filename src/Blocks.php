@@ -90,8 +90,11 @@ class Blocks {
 			self::ASSET_HANDLE,
 			'apbHelper',
 			[
-				'previous' => __( 'Older', 'ajax-posts-block' ),
-				'next'     => __( 'Newer', 'ajax-posts-block' ),
+				'i18n'  => [
+					'previous' => __( 'Older', 'ajax-posts-block' ),
+					'next'     => __( 'Newer', 'ajax-posts-block' ),
+				],
+				'types' => wp_list_pluck( get_post_types( [ 'show_in_rest' => true ], 'objects' ), 'label' ),
 			]
 		);
 
