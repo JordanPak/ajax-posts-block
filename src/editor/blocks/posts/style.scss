@@ -61,6 +61,12 @@
 
 .apb-prev-next {
 	justify-content: center;
+	margin-top: var(--apb-bsu-x2);
+
+	.wp-block-button {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
 }
 
 .apb-prev-next-button {
