@@ -33,7 +33,10 @@ export default ( { title, link, date, excerpt, embeds, onImageLoad } ) => {
 				/>
 			) }
 			<div className="apb-post-details">
-				<h3 className="apb-post-title">{ title.rendered }</h3>
+				<h3 // RawHTML doesn't appear to let us choose a tag :(
+					className="apb-post-title"
+					dangerouslySetInnerHTML={ { __html: title.rendered } }
+				/>
 				<div className="apb-post-meta">
 					{ embeds.author.length > 0 && (
 						<>
