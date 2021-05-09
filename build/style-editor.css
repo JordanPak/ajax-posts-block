@@ -37,6 +37,10 @@
 }
 
 .apb-post-excerpt {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   margin-top: 16px;
   margin-top: var(--apb-bsu);
 }
