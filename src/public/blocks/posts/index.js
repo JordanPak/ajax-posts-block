@@ -41,6 +41,20 @@ class AJAXPostsBlock extends Component {
 	}
 
 	/**
+	 * Check height sensor for an update
+	 *
+	 * @since 1.0.0
+	 */
+	doHeightCheck() {
+		// Set initial minimum height so paging is less jarring.
+		const sensorHeight = this.heightSensor.clientHeight;
+
+		if ( this.state.height === 0 || this.state.height < sensorHeight ) {
+			this.setState( { height: sensorHeight } );
+		}
+	}
+
+	/**
 	 * Check if new posts need to be fetched
 	 *
 	 * @param {Object} prevProps Props before state was changed.
@@ -58,10 +72,7 @@ class AJAXPostsBlock extends Component {
 			this.getPosts();
 		}
 
-		// Set initial minimum height so paging is less jarring.
-		if ( this.state.height === 0 ) {
-			this.setState( { height: this.heightSensor.clientHeight } );
-		}
+		this.doHeightCheck();
 	}
 
 	/**
@@ -192,6 +203,9 @@ class AJAXPostsBlock extends Component {
 										date={ post.date }
 										excerpt={ post.excerpt }
 										embeds={ post._embedded }
+										onImageLoad={ this.doHeightCheck.bind(
+											this
+										) }
 									/>
 								</li>
 							);
