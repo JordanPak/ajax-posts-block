@@ -27,6 +27,7 @@ class AJAXPostsBlock extends Component {
 		this.state = {
 			hasLoaded: false,
 			currentPage: 1,
+			posts: [],
 			height: 0,
 		};
 	}
@@ -46,6 +47,11 @@ class AJAXPostsBlock extends Component {
 	 * @since 1.0.0
 	 */
 	doHeightCheck() {
+		// sanity-check height sensor and skip minimum height on small screens
+		if ( ! this.heightSensor || window.innerWidth < 850 ) {
+			return;
+		}
+
 		// Set initial minimum height so paging is less jarring.
 		const sensorHeight = this.heightSensor.clientHeight;
 
@@ -152,7 +158,6 @@ class AJAXPostsBlock extends Component {
 	 */
 	doPage( page ) {
 		this.setState( {
-			posts: [],
 			hasLoaded: false,
 			currentPage: page,
 		} );
@@ -203,9 +208,6 @@ class AJAXPostsBlock extends Component {
 										date={ post.date }
 										excerpt={ post.excerpt }
 										embeds={ post._embedded }
-										onImageLoad={ this.doHeightCheck.bind(
-											this
-										) }
 									/>
 								</li>
 							);
@@ -236,16 +238,24 @@ class AJAXPostsBlock extends Component {
 
 		return (
 			<div
-				className="apb-posts-block-wrap"
-				style={ { minHeight: height } }
+				className={ `apb-posts-block-wrap ${
+					hasLoaded ? '' : 'apb-is-loading'
+				}` }
+				style={ {
+					// prettier vs stylelint
+					minHeight: height ? height : 'none', // stylelint-disable-line
+				} }
 			>
 				<div
 					className="apb-height-sensor"
 					ref={ ( heightSensor ) => {
-						this.heightSensor = heightSensor;
+						if ( heightSensor ) {
+							this.heightSensor = heightSensor;
+						}
 					} }
 				/>
-				{ hasLoaded ? this.renderPosts() : this.renderLoader() }
+				{ this.renderPosts() }
+				{ ! hasLoaded && this.renderLoader() }
 			</div>
 		);
 	}

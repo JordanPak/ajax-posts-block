@@ -7,7 +7,7 @@
 import { __, sprintf } from '@wordpress/i18n';
 import { RawHTML } from '@wordpress/element';
 
-export default ( { title, link, date, excerpt, embeds, onImageLoad } ) => {
+export default ( { title, link, date, excerpt, embeds } ) => {
 	date = new Date( date );
 
 	let ftMedia = false,
@@ -29,7 +29,6 @@ export default ( { title, link, date, excerpt, embeds, onImageLoad } ) => {
 					width={ ftSize.width }
 					height={ ftSize.height }
 					alt={ ftMedia.alt_text }
-					onLoad={ onImageLoad }
 				/>
 			) }
 			<div className="apb-post-details">
