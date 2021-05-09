@@ -63,7 +63,16 @@
 		float: right;
 		margin: 0 0 var(--apb-bsu) var(--apb-bsu);
 		width: auto;
-		max-width: 42.5%;
+
+		// extra point for Twenty Twenty-One entry-content img styling
+		&.apb-post-thumbnail {
+			max-width: 42.5%;
+		}
+	}
+
+	@media (min-width: 1200px) {
+		margin-bottom: calc(var(--apb-bsu) * 1.25);
+		margin-left: calc(var(--apb-bsu) * 1.25);
 	}
 }
 
