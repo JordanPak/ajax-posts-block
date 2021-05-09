@@ -10,8 +10,7 @@
   --apb-bsu-x4: calc(var(--apb-bsu) * 4);
   --apb-bsu-half: calc(var(--apb-bsu) / 2);
   --apb-font-size-regular: var(--global--font-size-sm, 18px);
-  --apb-font-size-medium: var(--global--font-size-base, 22px);
-  --apb-font-size-large: var(--IDK-UPDATE-THIS, 28px);
+  --apb-font-size-large: var(--global--font-size-xl, 28px);
   --apb-transition-timing-function: ease-in-out;
   --apb-transition-duration: 150ms;
 }
@@ -19,12 +18,12 @@
 @media (min-width: 1200px) {
   :root {
     --apb-font-size-regular: var(--global--font-size-sm, 20px);
-    --apb-font-size-large: var(--IDK-UPDATE-THIS, 34px);
+    --apb-font-size-large: var(--global--font-size-xl, 34px);
   }
 }
 .apb-post-title {
   clear: none;
-  font-size: var(--IDK-UPDATE-THIS, 28px);
+  font-size: var(--global--font-size-xl, 28px);
   font-size: var(--apb-font-size-large);
 }
 .apb-post-title.apb-post-title {
