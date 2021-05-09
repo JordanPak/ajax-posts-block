@@ -67,6 +67,14 @@
 	}
 }
 
+.apb-no-results {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 0;
+	text-align: center;
+}
+
 [data-apb-icon] {
 	display: inline-block;
 	width: 1rem;
