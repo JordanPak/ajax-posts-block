@@ -26,6 +26,7 @@
 
 .apb-posts-list {
 	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(min(425px, 100%), 1fr));
 	align-content: start;
 	gap: var(--apb-bsu-x2);
 
@@ -46,6 +47,14 @@
 		&:focus {
 			opacity: 0.725;
 		}
+	}
+
+	@media (min-width: 850px) {
+		gap: calc(var(--apb-bsu-x2) * 1.25) var(--apb-bsu-x3);
+	}
+
+	@media (min-width: 1200px) {
+		gap: var(--apb-bsu-x3) var(--apb-bsu-x4);
 	}
 }
 
