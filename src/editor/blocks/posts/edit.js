@@ -56,6 +56,7 @@ export default function Edit( { attributes, setAttributes } ) {
 
 			<div { ...useBlockProps() }>
 				<AJAXPostsBlock
+					key={ [ num, types, categories, tags ] } // update the component on change
 					num={ Number( num ) }
 					postTypes={ types.join( ',' ) }
 					categories={ categories.join( ',' ) }
