@@ -11,13 +11,20 @@
   --apb-bsu-half: calc(var(--apb-bsu) / 2);
   --apb-font-size-regular: var(--global--font-size-sm, 18px);
   --apb-font-size-medium: var(--global--font-size-base, 22px);
-  --apb-font-size-large: var(--IDK-UPDATE-THIS, 32px);
+  --apb-font-size-large: var(--IDK-UPDATE-THIS, 28px);
   --apb-transition-timing-function: ease-in-out;
   --apb-transition-duration: 150ms;
 }
 
+@media (min-width: 1200px) {
+  :root {
+    --apb-font-size-regular: var(--global--font-size-sm, 20px);
+    --apb-font-size-large: var(--IDK-UPDATE-THIS, 34px);
+  }
+}
 .apb-post-title {
-  font-size: var(--IDK-UPDATE-THIS, 32px);
+  clear: none;
+  font-size: var(--IDK-UPDATE-THIS, 28px);
   font-size: var(--apb-font-size-large);
 }
 .apb-post-title.apb-post-title {
@@ -58,8 +65,26 @@
     margin: 0 0 16px 16px;
     margin: 0 0 var(--apb-bsu) var(--apb-bsu);
     width: auto;
+  }
+  .apb-post-thumbnail.apb-post-thumbnail {
     max-width: 42.5%;
   }
+}
+@media (min-width: 1200px) {
+  .apb-post-thumbnail {
+    margin-bottom: calc(16px * 1.25);
+    margin-bottom: calc(var(--apb-bsu) * 1.25);
+    margin-left: calc(16px * 1.25);
+    margin-left: calc(var(--apb-bsu) * 1.25);
+  }
+}
+
+.apb-no-results {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0;
+  text-align: center;
 }
 
 [data-apb-icon] {
@@ -122,6 +147,7 @@
 .apb-posts-list {
   display: -ms-grid;
   display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(425px, 100%), 1fr));
   align-content: start;
   gap: var(--apb-bsu-x2);
 }
@@ -137,9 +163,24 @@
 .apb-posts-list a:hover, .apb-posts-list a:focus {
   opacity: 0.725;
 }
+@media (min-width: 850px) {
+  .apb-posts-list {
+    gap: calc(var(--apb-bsu-x2) * 1.25) var(--apb-bsu-x3);
+  }
+}
+@media (min-width: 1200px) {
+  .apb-posts-list {
+    gap: var(--apb-bsu-x3) var(--apb-bsu-x4);
+  }
+}
 
 .apb-prev-next {
   justify-content: center;
+  margin-top: var(--apb-bsu-x2);
+}
+.apb-prev-next .wp-block-button {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .apb-prev-next-button {
@@ -165,6 +206,12 @@
 }
 
 /* stylelint-enable selector-class-pattern */
+.apb-is-loading .apb-posts-list,
+.apb-is-loading .apb-prev-next,
+.apb-is-loading .apb-no-results {
+  opacity: 0;
+}
+
 .apb-height-sensor {
   position: absolute;
   top: 0;
@@ -189,6 +236,7 @@
   right: 0;
   bottom: 0;
   left: 0;
+  margin: 0;
   padding: var(--apb-bsu-x2);
   text-align: center;
   font-weight: 600;

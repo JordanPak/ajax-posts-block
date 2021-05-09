@@ -17173,6 +17173,8 @@ function Edit(_ref) {
       });
     }
   }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", Object(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["useBlockProps"])(), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_public_blocks_posts__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    key: [num, types, categories, tags] // update the component on change
+    ,
     num: Number(num),
     postTypes: types.join(','),
     categories: categories.join(','),
@@ -17934,6 +17936,7 @@ var AJAXPostsBlock = /*#__PURE__*/function (_Component) {
     _this.state = {
       hasLoaded: false,
       currentPage: 1,
+      posts: [],
       height: 0
     };
     return _this;
@@ -17951,6 +17954,29 @@ var AJAXPostsBlock = /*#__PURE__*/function (_Component) {
       this.getPosts();
     }
     /**
+     * Check height sensor for an update
+     *
+     * @since 1.0.0
+     */
+
+  }, {
+    key: "doHeightCheck",
+    value: function doHeightCheck() {
+      // sanity-check height sensor and skip minimum height on small screens
+      if (!this.heightSensor || window.innerWidth < 850) {
+        return;
+      } // Set initial minimum height so paging is less jarring.
+
+
+      var sensorHeight = this.heightSensor.clientHeight;
+
+      if (this.state.height === 0 || this.state.height < sensorHeight) {
+        this.setState({
+          height: sensorHeight
+        });
+      }
+    }
+    /**
      * Check if new posts need to be fetched
      *
      * @param {Object} prevProps Props before state was changed.
@@ -17963,14 +17989,9 @@ var AJAXPostsBlock = /*#__PURE__*/function (_Component) {
       // Grab new posts if the page or other props changed.
       if (prevState.currentPage !== this.state.currentPage || prevProps.num !== this.props.num || prevProps.postTypes !== this.props.postTypes || prevProps.categories !== this.props.categories || prevProps.tags !== this.props.tags) {
         this.getPosts();
-      } // Set initial minimum height so paging is less jarring.
-
-
-      if (this.state.height === 0) {
-        this.setState({
-          height: this.heightSensor.clientHeight
-        });
       }
+
+      this.doHeightCheck();
     }
     /**
      * Display the loading UI
@@ -18051,7 +18072,6 @@ var AJAXPostsBlock = /*#__PURE__*/function (_Component) {
     key: "doPage",
     value: function doPage(page) {
       this.setState({
-        posts: [],
         hasLoaded: false,
         currentPage: page
       });
@@ -18119,7 +18139,9 @@ var AJAXPostsBlock = /*#__PURE__*/function (_Component) {
         }));
       }
 
-      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("p", null, "NOTHING BRO");
+      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("p", {
+        className: "apb-no-results"
+      }, apbHelper.i18n.noResults);
     }
     /**
      * Output main block contents
@@ -18138,16 +18160,20 @@ var AJAXPostsBlock = /*#__PURE__*/function (_Component) {
           hasLoaded = _this$state2.hasLoaded,
           height = _this$state2.height;
       return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
-        className: "apb-posts-block-wrap",
+        className: "apb-posts-block-wrap ".concat(hasLoaded ? '' : 'apb-is-loading'),
         style: {
-          minHeight: height
+          // prettier vs stylelint
+          minHeight: height ? height : 'none' // stylelint-disable-line
+
         }
       }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
         className: "apb-height-sensor",
         ref: function ref(heightSensor) {
-          _this3.heightSensor = heightSensor;
+          if (heightSensor) {
+            _this3.heightSensor = heightSensor;
+          }
         }
-      }), hasLoaded ? this.renderPosts() : this.renderLoader());
+      }), this.renderPosts(), !hasLoaded && this.renderLoader());
     }
   }]);
 
@@ -18236,8 +18262,12 @@ __webpack_require__.r(__webpack_exports__);
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "apb-post-details"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h3", {
-    className: "apb-post-title"
-  }, title.rendered), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+    // RawHTML doesn't appear to let us choose a tag :(
+    className: "apb-post-title",
+    dangerouslySetInnerHTML: {
+      __html: title.rendered
+    }
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "apb-post-meta"
   }, embeds.author.length > 0 && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", {
     className: "apb-post-author"
@@ -18288,13 +18318,13 @@ __webpack_require__.r(__webpack_exports__);
     className: "wp-block-button__link apb-prev-next-button",
     disabled: currentPage === pages,
     onClick: onPrevious
-  }, _icons__WEBPACK_IMPORTED_MODULE_1__["default"].angleLeft(), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, apbHelper.previous))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+  }, _icons__WEBPACK_IMPORTED_MODULE_1__["default"].angleLeft(), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, apbHelper.i18n.previous))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "wp-block-button is-style-outline"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("button", {
     className: "wp-block-button__link apb-prev-next-button",
     disabled: currentPage === 1,
     onClick: onNext
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, apbHelper.next), _icons__WEBPACK_IMPORTED_MODULE_1__["default"].angleRight()))) : null;
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, apbHelper.i18n.next), _icons__WEBPACK_IMPORTED_MODULE_1__["default"].angleRight()))) : null;
 });
 
 /***/ }),
