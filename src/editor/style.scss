@@ -22,6 +22,14 @@
 	--apb-transition-duration: 150ms;
 }
 
+@media (min-width: 1200px) {
+
+	:root {
+		--apb-font-size-regular: var(--global--font-size-sm, 20px);
+		--apb-font-size-large: var(--IDK-UPDATE-THIS, 34px);
+	}
+}
+
 .apb-post-title {
 	font-size: var(--apb-font-size-large);
 
