@@ -7,9 +7,14 @@
 import { __, sprintf } from '@wordpress/i18n';
 import { RawHTML } from '@wordpress/element';
 
-export default ( { title, link, date, excerpt, embeds } ) => {
-	date = new Date( date );
-
+export default ( {
+	title,
+	link,
+	readTime,
+	excerpt,
+	embeds,
+	numberFormatter,
+} ) => {
 	let ftMedia = false,
 		ftSize = false;
 
@@ -41,20 +46,18 @@ export default ( { title, link, date, excerpt, embeds } ) => {
 						<>
 							<span className="apb-post-author">
 								by { embeds.author[ 0 ].name }
-							</span>{ ' ' }
+							</span>
 						</>
 					) }
-					<span className="apb-post-date">
-						{ sprintf(
-							// Translators: on %s (date).
-							__( 'on %s', 'ajax-posts-block' ),
-							date.toLocaleDateString( 'en-US', {
-								month: 'long',
-								day: 'numeric',
-								year: 'numeric',
-							} )
-						) }
-					</span>
+					{ readTime > 0 && (
+						<span className="apb-read-time">
+							{ sprintf(
+								// Translators: %s minute read time.
+								__( '%s minute read time', 'ajax-posts-block' ),
+								numberFormatter.format( readTime )
+							) }
+						</span>
+					) }
 				</div>
 				{ excerpt.rendered && (
 					<RawHTML className="apb-post-excerpt">

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /**
  * Global front end + editor styling
  *
@@ -34,6 +35,13 @@
   font-size: var(--global--font-size-sm, 18px);
   font-size: var(--apb-font-size-regular);
   font-weight: 700;
+}
+.apb-post-meta * + .apb-read-time::before {
+  content: "●";
+  display: inline-block;
+  margin: 0 calc(16px / 2);
+  margin: 0 var(--apb-bsu-half);
+  opacity: 0.333;
 }
 
 .apb-post-excerpt {
