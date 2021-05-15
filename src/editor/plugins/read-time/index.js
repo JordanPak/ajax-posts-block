@@ -40,11 +40,11 @@ const render = compose(
 	return (
 		<PluginDocumentSettingPanel
 			className="apb-read-time"
-			title={ __( 'Read Time', 'ajax-posts-block' ) }
+			title={ __( 'Read time', 'ajax-posts-block' ) }
 		>
 			<TextControl
 				label={ __(
-					'Estimated Read Time (minutes)',
+					'Estimated read time (minutes)',
 					'ajax-posts-block'
 				) }
 				type="number"
