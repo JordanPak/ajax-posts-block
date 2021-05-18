@@ -698,6 +698,8 @@ var AJAXPostsBlock = /*#__PURE__*/function (_Component) {
           totalPages = _this$state.totalPages;
 
       if (posts.length > 0) {
+        // So we don't have to make it a bunch of times
+        var numberFormatter = new Intl.NumberFormat('en-US');
         return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("ul", {
           className: "apb-posts-list"
         }, posts.map(function (post, index) {
@@ -706,9 +708,10 @@ var AJAXPostsBlock = /*#__PURE__*/function (_Component) {
           }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_post__WEBPACK_IMPORTED_MODULE_9__["default"], {
             title: post.title,
             link: post.link,
-            date: post.date,
+            readTime: post.meta.apb_read_time,
             excerpt: post.excerpt,
-            embeds: post._embedded
+            embeds: post._embedded,
+            numberFormatter: numberFormatter
           }));
         })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_prev_next__WEBPACK_IMPORTED_MODULE_10__["default"], {
           pages: totalPages,
@@ -816,10 +819,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (function (_ref) {
   var title = _ref.title,
       link = _ref.link,
-      date = _ref.date,
+      readTime = _ref.readTime,
       excerpt = _ref.excerpt,
-      embeds = _ref.embeds;
-  date = new Date(date);
+      embeds = _ref.embeds,
+      numberFormatter = _ref.numberFormatter;
   var ftMedia = false,
       ftSize = false;
 
@@ -850,14 +853,10 @@ __webpack_require__.r(__webpack_exports__);
     className: "apb-post-meta"
   }, embeds.author.length > 0 && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", {
     className: "apb-post-author"
-  }, "by ", embeds.author[0].name), ' '), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", {
-    className: "apb-post-date"
-  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["sprintf"])( // Translators: on %s (date).
-  Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('on %s', 'ajax-posts-block'), date.toLocaleDateString('en-US', {
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric'
-  })))), excerpt.rendered && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["RawHTML"], {
+  }, "by ", embeds.author[0].name)), readTime > 0 && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", {
+    className: "apb-read-time"
+  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["sprintf"])( // Translators: %s minute read time.
+  Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('%s minute read time', 'ajax-posts-block'), numberFormatter.format(readTime)))), excerpt.rendered && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["RawHTML"], {
     className: "apb-post-excerpt"
   }, excerpt.rendered)));
 });

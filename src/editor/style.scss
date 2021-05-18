@@ -42,6 +42,13 @@
 .apb-post-meta {
 	font-size: var(--apb-font-size-regular);
 	font-weight: 700;
+
+	* + .apb-read-time::before {
+		content: "●";
+		display: inline-block;
+		margin: 0 var(--apb-bsu-half);
+		opacity: 0.333;
+	}
 }
 
 .apb-post-excerpt {

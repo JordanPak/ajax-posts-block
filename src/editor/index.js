@@ -8,5 +8,8 @@
 import './style.scss';
 import './index.scss';
 
+// sidebar plugins
+import './plugins';
+
 // blocks
 import './blocks';

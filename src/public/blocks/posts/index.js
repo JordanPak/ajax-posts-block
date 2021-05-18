@@ -196,6 +196,9 @@ class AJAXPostsBlock extends Component {
 		const { posts, currentPage, totalPages } = this.state;
 
 		if ( posts.length > 0 ) {
+			// So we don't have to make it a bunch of times
+			const numberFormatter = new Intl.NumberFormat( 'en-US' );
+
 			return (
 				<>
 					<ul className="apb-posts-list">
@@ -205,9 +208,10 @@ class AJAXPostsBlock extends Component {
 									<Post
 										title={ post.title }
 										link={ post.link }
-										date={ post.date }
+										readTime={ post.meta.apb_read_time }
 										excerpt={ post.excerpt }
 										embeds={ post._embedded }
+										numberFormatter={ numberFormatter }
 									/>
 								</li>
 							);
