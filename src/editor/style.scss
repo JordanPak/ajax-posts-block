@@ -1,0 +1,126 @@
+/**
+ * Global front end + editor styling
+ *
+ * @since 1.0.0
+ */
+
+:root {
+	// base spacing units since rems don't always translate well between themes
+	--apb-bsu: 16px;
+	--apb-bsu-x2: calc(var(--apb-bsu) * 2);
+	--apb-bsu-x3: calc(var(--apb-bsu) * 3);
+	--apb-bsu-x4: calc(var(--apb-bsu) * 4);
+	--apb-bsu-half: calc(var(--apb-bsu) / 2);
+
+	// font sizes (--global--* is standard set by Twenty Twenty-One
+	--apb-font-size-regular: var(--global--font-size-sm, 18px);
+	--apb-font-size-large: var(--global--font-size-xl, 28px);
+
+	// transitions
+	--apb-transition-timing-function: ease-in-out;
+	--apb-transition-duration: 150ms;
+}
+
+@media (min-width: 1200px) {
+
+	:root {
+		--apb-font-size-regular: var(--global--font-size-sm, 20px);
+		--apb-font-size-large: var(--global--font-size-xl, 34px);
+	}
+}
+
+.apb-post-title {
+	font-size: var(--apb-font-size-large);
+
+	// margin resets (some extra points are needed for theme selectors)
+	&.apb-post-title {
+		clear: none;
+		margin: 0;
+	}
+}
+
+.apb-post-meta {
+	font-size: var(--apb-font-size-regular);
+	font-weight: 700;
+
+	* + .apb-read-time::before {
+		content: "●";
+		display: inline-block;
+		margin: 0 var(--apb-bsu-half);
+		opacity: 0.333;
+	}
+}
+
+.apb-post-excerpt {
+	display: -webkit-box;
+	-webkit-line-clamp: 4;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	margin-top: var(--apb-bsu);
+
+	p {
+		margin: 0;
+		font-size: var(--apb-font-size-regular);
+
+		+ p {
+			margin-top: var(--apb-bsu-half);
+		}
+	}
+}
+
+.apb-post-thumbnail {
+	margin: 0 0 var(--apb-bsu);
+	width: 100%;
+
+	// extra point for Twenty Twenty entry-content list styling
+	&.apb-post-thumbnail {
+		display: block;
+	}
+
+	@media (min-width: 480px) {
+		float: right;
+		margin: 0 0 var(--apb-bsu) var(--apb-bsu);
+		width: auto;
+
+		// extra point for Twenty Twenty-One entry-content img styling
+		&.apb-post-thumbnail {
+			max-width: 42.5%;
+		}
+	}
+
+	@media (min-width: 1200px) {
+		margin-bottom: calc(var(--apb-bsu) * 1.25);
+		margin-left: calc(var(--apb-bsu) * 1.25);
+	}
+}
+
+.apb-no-results {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 0;
+	text-align: center;
+}
+
+[data-apb-icon] {
+	display: inline-block;
+	width: 1rem;
+	width: var(--fse-font-size-medium);
+	height: 1em;
+	vertical-align: -0.125em;
+}
+
+[data-apb-icon-spin="true"] {
+	animation: apb-icon-spin 2s linear infinite;
+}
+
+@keyframes apb-icon-spin {
+
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(1turn);
+	}
+}

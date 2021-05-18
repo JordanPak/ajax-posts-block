@@ -42,7 +42,7 @@ class Blocks {
 	 * @since 1.0.0
 	 */
 	public function __construct() {
-		add_action( 'init', [ __CLASS__, 'do_asset_registration' ] );
+		add_action( 'init', [ __CLASS__, 'do_asset_registration' ] ); // @todo don't make this static.
 		add_action( 'enqueue_block_editor_assets', [ __CLASS__, 'enqueue_editor_assets' ] );
 
 		new Block( 'posts' );
@@ -54,16 +54,17 @@ class Blocks {
 	 * @since 1.0.0
 	 */
 	public static function do_asset_registration() {
-		$build_dir = AJAX_POSTS_BLOCK_DIR . 'build';
-		$build_url = AJAX_POSTS_BLOCK_URL . 'build';
-		$asset     = require "$build_dir/editor.asset.php";
+		$build_dir    = AJAX_POSTS_BLOCK_DIR . 'build';
+		$build_url    = AJAX_POSTS_BLOCK_URL . 'build';
+		$editor_asset = require "$build_dir/editor.asset.php";
+		$public_asset = require "$build_dir/public.asset.php";
 
-		// Register block JS.
+		// Register block editor JS.
 		wp_register_script(
 			self::EDITOR_ASSET_HANDLE,
 			"$build_url/editor.js",
-			$asset['dependencies'],
-			$asset['version'],
+			$editor_asset['dependencies'],
+			$editor_asset['version'],
 			true
 		);
 
@@ -73,6 +74,29 @@ class Blocks {
 			"$build_url/editor.css",
 			[],
 			filemtime( "$build_dir/editor.css" )
+		);
+
+		// Register front-end + editor block JS.
+		wp_register_script(
+			self::ASSET_HANDLE,
+			"$build_url/public.js",
+			$public_asset['dependencies'],
+			$public_asset['version'],
+			true
+		);
+
+		// Add some helper vars for the block.
+		wp_localize_script(
+			self::ASSET_HANDLE,
+			'apbHelper',
+			[
+				'i18n'  => [
+					'noResults' => __( "There isn't anything to see right now.", 'ajax-posts-block' ),
+					'previous'  => __( 'Older', 'ajax-posts-block' ),
+					'next'      => __( 'Newer', 'ajax-posts-block' ),
+				],
+				'types' => wp_list_pluck( get_post_types( [ 'show_in_rest' => true ], 'objects' ), 'label' ),
+			]
 		);
 
 		// Register front-end + editor block styles.

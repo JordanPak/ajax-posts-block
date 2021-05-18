@@ -8,11 +8,12 @@ import { __ } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, RangeControl } from '@wordpress/components';
 
-import icons from '../../../icons';
-
+import loading from '../../components/loading';
 import PostTypesControl from '../../components/post-types-control';
 import CategoriesControl from '../../components/categories-control';
 import TagsControl from '../../components/tags-control';
+
+import AJAXPostsBlock from '../../../public/blocks/posts';
 
 export default function Edit( { attributes, setAttributes } ) {
 	const { num, types, categories, tags } = attributes;
@@ -53,18 +54,17 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 			</InspectorControls>
 
-			<div
-				{ ...useBlockProps( {
-					'data-num': num,
-					'data-types': types.join( ',' ),
-					'data-categories': categories.join( ',' ),
-					'data-tags': tags.join( ',' ),
-				} ) }
-			>
-				<p className="apb-loading">
-					{ __( 'Loading', 'ajax-posts-block' ) }
-					{ icons.loading() }
-				</p>
+			<div { ...useBlockProps() }>
+				<AJAXPostsBlock
+					key={ [ num, types, categories, tags ] } // update the component on change
+					num={ Number( num ) }
+					postTypes={ types.join( ',' ) }
+					categories={ categories.join( ',' ) }
+					tags={ tags.join( ',' ) }
+					loadingEl={ loading }
+				>
+					{ loading }
+				</AJAXPostsBlock>
 			</div>
 		</>
 	);

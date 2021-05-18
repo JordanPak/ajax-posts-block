@@ -8,7 +8,7 @@ import { __ } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
 import { info as icon } from '@wordpress/icons';
 
-// import './style.scss';
+import './style.scss';
 
 import edit from './edit';
 import save from './save';
@@ -24,12 +24,13 @@ registerBlockType( 'ajax-posts-block/posts', {
 	category: 'widgets',
 	keywords: [ __( 'posts' ), __( 'content' ), __( 'ajax' ) ],
 
+	supports: {
+		align: [ 'wide' ],
+	},
+
 	attributes: {
 		num: {
 			type: 'number',
-			// source: 'attribute', // @todo try to make this work
-			// selector: '[data-num]',
-			// attribute: 'data-num',
 			default: 6,
 		},
 		categories: {

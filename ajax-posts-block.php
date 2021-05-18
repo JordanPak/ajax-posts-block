@@ -48,6 +48,22 @@ class Plugin {
 	public $blocks;
 
 	/**
+	 * REST API endpoint extension
+	 *
+	 * @since 1.0.0
+	 * @var   REST_API
+	 */
+	public $rest_api;
+
+	/**
+	 * Post extension handler
+	 *
+	 * @since 1.0.0
+	 * @var   Posts
+	 */
+	public $posts;
+
+	/**
 	 * Get main plugin instance.
 	 *
 	 * @since 1.0.0
@@ -94,7 +110,9 @@ class Plugin {
 	 * @since 1.0.0
 	 */
 	public function init() {
-		$this->blocks = new Blocks();
+		$this->blocks   = new Blocks();
+		$this->rest_api = new REST_API();
+		$this->posts    = new Posts();
 
 		// if ( $this->is_request( 'frontend' ) ) {
 		// 	$this->template_loader = new Template_Loader();

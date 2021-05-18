@@ -15,16 +15,16 @@ const PostTypesControl = withSelect( ( select ) => ( {
 	types: select( 'core' ).getPostTypes(),
 } ) )( ( { types, value, onChange } ) => {
 	// Build "viewable" options
-	const options = _.filter( types, 'viewable' ).map(
-		( { labels, slug } ) => ( {
-			label: labels.singular_name,
-			value: slug,
-		} )
-	);
+	const options = _.filter( types, ( { viewable, slug } ) => {
+		return viewable && slug !== 'attachment';
+	} ).map( ( { labels, slug } ) => ( {
+		label: labels.singular_name,
+		value: slug,
+	} ) );
 
 	// Build options from post type slug values
-	const valueObjects = _.filter( types, ( type ) => {
-		return value.includes( type.slug );
+	const valueObjects = _.filter( types, ( { slug } ) => {
+		return value.includes( slug );
 	} ).map( ( { labels, slug } ) => ( {
 		label: labels.singular_name,
 		value: slug,
@@ -34,7 +34,11 @@ const PostTypesControl = withSelect( ( select ) => ( {
 		<BaseControl
 			className="apb-post-type-control"
 			id="apb-post-type-select"
-			label={ __( 'Filter to post types', 'ajax-posts-block' ) }
+			label={ __( 'Filter to types', 'ajax-posts-block' ) }
+			help={ __(
+				'Leave empty to show all public types.',
+				'ajax-posts-block'
+			) }
 		>
 			<Select
 				name="apb-post-type-select"
@@ -47,10 +51,7 @@ const PostTypesControl = withSelect( ( select ) => ( {
 					values = values.map( ( option ) => option.value );
 					onChange( values );
 				} }
-				placeholder={ __(
-					'Leave empty to show all',
-					'ajax-posts-block'
-				) }
+				placeholder={ __( 'All types', 'ajax-posts-block' ) }
 			/>
 		</BaseControl>
 	);
