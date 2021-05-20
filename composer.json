@@ -13,7 +13,8 @@
 		"wp-coding-standards/wpcs": "^2.2",
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.6.2",
 		"phpcompatibility/php-compatibility": "^9.3",
-		"roave/security-advisories": "dev-master"
+		"roave/security-advisories": "dev-master",
+		"phpunit/phpunit": "7.5.20"
 	},
 	"autoload": {
 		"psr-4": { "AJAX_Posts_Block\\": "./src" }
@@ -22,6 +23,7 @@
 		"install-codestandards": [
 			"Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run"
 		],
-		"phpcs": "phpcs . --ignore=node_modules/*,vendor/*"
+		"phpcs": "phpcs . --ignore=node_modules/*,vendor/*",
+		"test": "phpunit"
 	}
 }
