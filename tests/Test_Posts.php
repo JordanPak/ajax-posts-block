@@ -47,4 +47,29 @@ class Test_Posts extends WP_UnitTestCase {
 		$this->instance->do_meta_registration();
 		$this->assertArrayHasKey( 'apb_read_time', get_registered_meta_keys( 'post' ) );
 	}
+
+	/**
+	 * Make sure apb_read_time meta can be set and retreived
+	 *
+	 * We're going to use a page since it's more edge-casey than a normal post
+	 * post.
+	 *
+	 * @covers AJAX_Posts_Block\Posts::do_meta_registration()
+	 */
+	public function test_read_time_post_meta() {
+
+		// @see Pirates of the Caribbean.
+		$post_id = $this->factory->post->create(
+			[
+				'post_type'    => 'page',
+				'post_title'   => 'Why, thank you, Jack',
+				'post_content' => 'No, the <em>monkey</em> Jack.',
+				'meta_input'   => [
+					'apb_read_time' => 100,
+				],
+			]
+		);
+
+		$this->assertSame( '100', get_post_meta( $post_id, 'apb_read_time', true ) );
+	}
 }
