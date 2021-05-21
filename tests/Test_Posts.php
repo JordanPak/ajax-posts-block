@@ -37,4 +37,14 @@ class Test_Posts extends WP_UnitTestCase {
 	public function test_construct() {
 		$this->assertEquals( 10, has_action( 'init', [ $this->instance, 'do_meta_registration' ] ) );
 	}
+
+	/**
+	 * Test do_meta_registration()
+	 *
+	 * @covers AJAX_Posts_Block\Posts::do_meta_registration()
+	 */
+	public function test_do_meta_registration() {
+		$this->instance->do_meta_registration();
+		$this->assertArrayHasKey( 'apb_read_time', get_registered_meta_keys( 'post' ) );
+	}
 }
