@@ -19,6 +19,8 @@ class Test_Functions extends WP_UnitTestCase {
 	/**
 	 * Test get_can_user_edit_posts()
 	 *
+	 * @since 1.0.0
+	 *
 	 * @covers AJAX_Posts_Block\get_can_user_edit_posts()
 	 */
 	public function test_get_can_user_edit_posts() {
@@ -45,5 +47,20 @@ class Test_Functions extends WP_UnitTestCase {
 
 		// Restore original user.
 		wp_set_current_user( $og_id );
+	}
+
+	/**
+	 * Test get_icon()
+	 *
+	 * @since 1.0.0
+	 *
+	 * @covers AJAX_Posts_Block\get_icon()
+	 */
+	public function test_get_icon() {
+
+		$this->assertNotEmpty(
+			get_icon( 'loading' ),
+			'SVG icon source getter is failing.'
+		);
 	}
 }
