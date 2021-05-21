@@ -31,6 +31,16 @@ class Test_Plugin extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Test __construct()
+	 *
+	 * @covers AJAX_Posts_Block\Plugin::__construct()
+	 */
+	public function test_construct() {
+		$this->assertEquals( 10, has_action( 'plugins_loaded', [ $this->instance, 'init' ] ) );
+		$this->assertEquals( 5, has_action( 'ajax_posts_block_activate', [ $this->instance, 'init' ] ) );
+	}
+
+	/**
 	 * Test init()
 	 *
 	 * @covers AJAX_Posts_Block\Plugin::init()
