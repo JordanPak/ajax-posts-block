@@ -24,11 +24,12 @@ class Test_Plugin extends WP_UnitTestCase {
 	/**
 	 * Setup
 	 */
-	// public function setUP() {
-	// 	parent::setUp();
-	// 	$this->instance = new Plugin();
-	// 	$this->instance->init();
-	// }
+	public function setUP() {
+		parent::setUp();
+		$this->instance = new Plugin();
+		$this->instance->init();
+	}
+
 
 	// /**
 	//  * Test init()
