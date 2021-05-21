@@ -76,7 +76,7 @@ class Test_Posts extends WP_UnitTestCase {
 		);
 
 		$this->assertSame(
-			100,
+			'100',
 			get_post_meta( $post_id, 'apb_read_time', true ),
 			'Page post\'s apb_read_time meta should be "100".'
 		);
