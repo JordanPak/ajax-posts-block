@@ -31,14 +31,6 @@ class Block {
 	protected $name;
 
 	/**
-	 * Does the block render as a template?
-	 *
-	 * @since 1.0.0
-	 * @var   boolean
-	 */
-	protected $templated = false;
-
-	/**
 	 * Set everything up
 	 *
 	 * @since 1.0.0
@@ -60,57 +52,12 @@ class Block {
 
 		register_block_type(
 			"ajax-posts-block/{$this->name}",
-			array_filter(
-				[
-					'editor_script'   => Blocks::EDITOR_ASSET_HANDLE,
-					'editor_style'    => Blocks::EDITOR_ASSET_HANDLE,
-					'script'          => Blocks::ASSET_HANDLE,
-					'style'           => Blocks::ASSET_HANDLE,
-					'attributes'      => $this->get_attributes(),
-					'render_callback' => $this->templated ? [ $this, 'render' ] : null,
-				]
-			)
+			[
+				'editor_script' => Blocks::EDITOR_ASSET_HANDLE,
+				'editor_style'  => Blocks::EDITOR_ASSET_HANDLE,
+				'script'        => Blocks::ASSET_HANDLE,
+				'style'         => Blocks::ASSET_HANDLE,
+			]
 		);
-
-		$this->do_meta_registration();
-	}
-
-	/**
-	 * Get block's attributes
-	 *
-	 * @since  1.0.0
-	 *
-	 * @return array
-	 */
-	protected function get_attributes() {
-		return [];
-	}
-
-	/**
-	 * Do extra meta post meta registration for attribute sourcing
-	 *
-	 * @since 1.0.0
-	 */
-	protected function do_meta_registration() {
-	}
-
-	/**
-	 * Render the block
-	 *
-	 * Only used if templated.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @param  array  $attrs   Block's attributes.
-	 * @param  string $content Block's contents (InnerBlocks).
-	 * @return string          Block HTML.
-	 */
-	public function render( $attrs, $content ) {
-
-		if ( $content ) {
-			$attrs['content'] = $content;
-		}
-
-		return get_block_template( $this->name, $attrs );
 	}
 }
