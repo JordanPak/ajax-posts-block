@@ -104,37 +104,7 @@ class Plugin {
 		$this->rest_api = new REST_API();
 		$this->posts    = new Posts();
 
-		// if ( $this->is_request( 'frontend' ) ) {
-		// 	$this->template_loader = new Template_Loader();
-		// 	$this->template_hooks  = new Template_Hooks();
-		// }
-
 		do_action( 'ajax_posts_block_loaded' );
-	}
-
-	/**
-	 * What type of request is this?
-	 *
-	 * @since 1.0.0
-	 * @see   WooCommerce's WooCommerce->is_request()
-	 *
-	 * @param  string $type  admin, ajax, cron or frontend.
-	 * @return boolean
-	 */
-	private function is_request( $type ) {
-		switch ( $type ) {
-			case 'admin':
-				return is_admin();
-
-			case 'ajax':
-				return defined( 'DOING_AJAX' );
-
-			case 'cron':
-				return defined( 'DOING_CRON' );
-
-			case 'frontend':
-				return ( ! is_admin() || defined( 'DOING_AJAX' ) ) && ! defined( 'DOING_CRON' );
-		}
 	}
 
 	/**
