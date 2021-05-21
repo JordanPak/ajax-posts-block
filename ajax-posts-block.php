@@ -92,8 +92,6 @@ class Plugin {
 	public function __construct() {
 		add_action( 'plugins_loaded', [ $this, 'init' ] );
 		add_action( 'ajax_posts_block_activate', [ $this, 'init' ], 5 );
-		add_action( 'ajax_posts_block_activate', 'flush_rewrite_rules' ); // @todo probably not needed.
-		add_action( 'ajax_posts_block_deactivate', 'flush_rewrite_rules' ); // @todo probably not needed.
 	}
 
 	/**
