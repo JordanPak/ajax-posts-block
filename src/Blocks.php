@@ -42,8 +42,8 @@ class Blocks {
 	 * @since 1.0.0
 	 */
 	public function __construct() {
-		add_action( 'init', [ __CLASS__, 'do_asset_registration' ] ); // @todo don't make this static.
-		add_action( 'enqueue_block_editor_assets', [ __CLASS__, 'enqueue_editor_assets' ] );
+		add_action( 'init', [ $this, 'do_asset_registration' ] );
+		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_editor_assets' ] );
 
 		new Block( 'posts' );
 	}
@@ -53,7 +53,7 @@ class Blocks {
 	 *
 	 * @since 1.0.0
 	 */
-	public static function do_asset_registration() {
+	public function do_asset_registration() {
 		$build_dir    = AJAX_POSTS_BLOCK_DIR . 'build';
 		$build_url    = AJAX_POSTS_BLOCK_URL . 'build';
 		$editor_asset = require "$build_dir/editor.asset.php";
@@ -113,7 +113,7 @@ class Blocks {
 	 *
 	 * @since 1.0.0
 	 */
-	public static function enqueue_editor_assets() {
+	public function enqueue_editor_assets() {
 
 		// Always enqueue editor script/styles since sidebar plugins aren't
 		// registered in PHP.
