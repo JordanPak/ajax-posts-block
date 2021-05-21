@@ -42,6 +42,6 @@ class Test_Plugin extends WP_UnitTestCase {
 		$blocks_property->setAccessible( true );
 		$blocks_class = $blocks_property->getValue( $this->instance );
 
-		$this->assertEquals( 'AJAX_Posts_Block\Blockskrik', get_class( $blocks_class ) );
+		$this->assertEquals( 'AJAX_Posts_Block\Blocks', get_class( $blocks_class ) );
 	}
 }
