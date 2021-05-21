@@ -2,6 +2,7 @@
 /**
  * Test_AJAX_Posts_Block
  *
+ * @since   1.0.0
  * @package AJAX_Posts_Block
  */
 
@@ -10,12 +11,15 @@ use function AJAX_Posts_Block\instance;
 /**
  * Class Test_AJAX_Posts_Block
  *
+ * @since   1.0.0
  * @package AJAX_Posts_Block
  */
 class Test_AJAX_Posts_Block extends WP_UnitTestCase {
 
 	/**
 	 * Test instance()
+	 *
+	 * @since 1.0.0
 	 *
 	 * @covers AJAX_Posts_Block\instance()
 	 */

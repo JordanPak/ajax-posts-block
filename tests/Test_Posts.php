@@ -2,6 +2,7 @@
 /**
  * Test_Posts
  *
+ * @since   1.0.0
  * @package AJAX_Posts_Block
  */
 
@@ -10,6 +11,7 @@ use AJAX_Posts_Block\Posts;
 /**
  * Class Test_Posts
  *
+ * @since   1.0.0
  * @package AJAX_Posts_Block
  */
 class Test_Posts extends WP_UnitTestCase {
@@ -17,12 +19,15 @@ class Test_Posts extends WP_UnitTestCase {
 	/**
 	 * Posts misc helper instance
 	 *
-	 * @var Blocks
+	 * @since 1.0.0
+	 * @var   Blocks
 	 */
 	public $instance;
 
 	/**
 	 * Setup
+	 *
+	 * @since 1.0.0
 	 */
 	public function setUP() {
 		parent::setUp();
@@ -32,6 +37,8 @@ class Test_Posts extends WP_UnitTestCase {
 	/**
 	 * Test __construct()
 	 *
+	 * @since 1.0.0
+	 *
 	 * @covers AJAX_Posts_Block\Posts::__construct()
 	 */
 	public function test_construct() {
@@ -40,6 +47,8 @@ class Test_Posts extends WP_UnitTestCase {
 
 	/**
 	 * Test do_meta_registration()
+	 *
+	 * @since 1.0.0
 	 *
 	 * @covers AJAX_Posts_Block\Posts::do_meta_registration()
 	 */
@@ -58,6 +67,8 @@ class Test_Posts extends WP_UnitTestCase {
 	 *
 	 * We're going to use a page since it's more edge-casey than a normal post
 	 * post.
+	 *
+	 * @since 1.0.0
 	 *
 	 * @covers AJAX_Posts_Block\Posts::do_meta_registration()
 	 */

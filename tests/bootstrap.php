@@ -2,6 +2,7 @@
 /**
  * PHPUnit bootstrap file
  *
+ * @since   1.0.0
  * @package AJAX_Posts_Block
  */
 
@@ -21,6 +22,8 @@ require_once $_tests_dir . '/includes/functions.php';
 
 /**
  * Manually load the plugin being tested.
+ *
+ * @since 1.0.0
  */
 function _manually_load_plugin() {
 	require dirname( dirname( __FILE__ ) ) . '/ajax-posts-block.php';

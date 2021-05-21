@@ -2,6 +2,7 @@
 /**
  * Test_Functions
  *
+ * @since   1.0.0
  * @package AJAX_Posts_Block
  */
 
@@ -12,6 +13,7 @@ use function AJAX_Posts_Block\do_icon;
 /**
  * Class Test_Functions
  *
+ * @since   1.0.0
  * @package AJAX_Posts_Block
  */
 class Test_Functions extends WP_UnitTestCase {

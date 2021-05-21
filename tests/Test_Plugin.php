@@ -2,6 +2,7 @@
 /**
  * Test_Plugin
  *
+ * @since   1.0.0
  * @package AJAX_Posts_Block
  */
 
@@ -10,6 +11,7 @@ use AJAX_Posts_Block\Plugin;
 /**
  * Class Test_Plugin
  *
+ * @since   1.0.0
  * @package AJAX_Posts_Block
  */
 class Test_Plugin extends WP_UnitTestCase {
@@ -17,12 +19,15 @@ class Test_Plugin extends WP_UnitTestCase {
 	/**
 	 * Plugin instance
 	 *
-	 * @var Plugin
+	 * @since 1.0.0
+	 * @var   Plugin
 	 */
 	public $instance;
 
 	/**
 	 * Setup
+	 *
+	 * @since 1.0.0
 	 */
 	public function setUP() {
 		parent::setUp();
@@ -33,6 +38,8 @@ class Test_Plugin extends WP_UnitTestCase {
 	/**
 	 * Test __construct()
 	 *
+	 * @since 1.0.0
+	 *
 	 * @covers AJAX_Posts_Block\Plugin::__construct()
 	 */
 	public function test_construct() {
@@ -42,6 +49,8 @@ class Test_Plugin extends WP_UnitTestCase {
 
 	/**
 	 * Test init()
+	 *
+	 * @since 1.0.0
 	 *
 	 * @covers AJAX_Posts_Block\Plugin::init()
 	 */

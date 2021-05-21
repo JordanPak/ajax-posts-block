@@ -2,6 +2,7 @@
 /**
  * Test_REST_API
  *
+ * @since   1.0.0
  * @package AJAX_Posts_Block
  */
 
@@ -10,6 +11,7 @@ use AJAX_Posts_Block\REST_API;
 /**
  * Class Test_REST_API
  *
+ * @since   1.0.0
  * @package AJAX_Posts_Block
  */
 class Test_REST_API extends WP_UnitTestCase {
@@ -17,19 +19,23 @@ class Test_REST_API extends WP_UnitTestCase {
 	/**
 	 * REST server
 	 *
-	 * @var WP_Rest_Server
+	 * @since 1.0.0
+	 * @var   WP_Rest_Server
 	 */
 	protected $server;
 
 	/**
 	 * REST_API instance
 	 *
-	 * @var REST_API
+	 * @since 1.0.0
+	 * @var   REST_API
 	 */
 	public $instance;
 
 	/**
 	 * Setup
+	 *
+	 * @since 1.0.0
 	 */
 	public function setUP() {
 		parent::setUp();
@@ -49,6 +55,8 @@ class Test_REST_API extends WP_UnitTestCase {
 	/**
 	 * Test __construct()
 	 *
+	 * @since 1.0.0
+	 *
 	 * @covers AJAX_Posts_Block\REST_API::__construct()
 	 */
 	public function test_construct() {
@@ -57,6 +65,8 @@ class Test_REST_API extends WP_UnitTestCase {
 
 	/**
 	 * Test set_post_types()
+	 *
+	 * @since 1.0.0
 	 *
 	 * @covers AJAX_Posts_Block\REST_API::set_post_types()
 	 */
@@ -90,6 +100,8 @@ class Test_REST_API extends WP_UnitTestCase {
 
 	/**
 	 * Test inclusion of posts of additional types in /posts query
+	 *
+	 * @since 1.0.0
 	 *
 	 * @covers AJAX_Posts_Block\REST_API::set_post_types()
 	 */

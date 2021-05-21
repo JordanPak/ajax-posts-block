@@ -2,6 +2,7 @@
 /**
  * Test_Block
  *
+ * @since   1.0.0
  * @package AJAX_Posts_Block
  */
 
@@ -10,6 +11,7 @@ use AJAX_Posts_Block\Block;
 /**
  * Class Test_Block
  *
+ * @since   1.0.0
  * @package AJAX_Posts_Block
  */
 class Test_Block extends WP_UnitTestCase {
@@ -17,12 +19,15 @@ class Test_Block extends WP_UnitTestCase {
 	/**
 	 * Sample block instance
 	 *
-	 * @var Blocks
+	 * @since 1.0.0
+	 * @var   Blocks
 	 */
 	public $block;
 
 	/**
 	 * Setup
+	 *
+	 * @since 1.0.0
 	 */
 	public function setUP() {
 		parent::setUp();
@@ -32,6 +37,8 @@ class Test_Block extends WP_UnitTestCase {
 	/**
 	 * Test __construct()
 	 *
+	 * @since 1.0.0
+	 *
 	 * @covers AJAX_Posts_Block\Block::__construct()
 	 */
 	public function test_construct() {
@@ -40,6 +47,8 @@ class Test_Block extends WP_UnitTestCase {
 
 	/**
 	 * Test do_registration()
+	 *
+	 * @since 1.0.0
 	 *
 	 * @covers AJAX_Posts_Block\Block::do_registration()
 	 */

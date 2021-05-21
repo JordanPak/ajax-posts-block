@@ -2,6 +2,7 @@
 /**
  * Test_Blocks
  *
+ * @since   1.0.0
  * @package AJAX_Posts_Block
  */
 
@@ -10,6 +11,7 @@ use AJAX_Posts_Block\Blocks;
 /**
  * Class Test_Blocks
  *
+ * @since   1.0.0
  * @package AJAX_Posts_Block
  */
 class Test_Blocks extends WP_UnitTestCase {
@@ -17,12 +19,15 @@ class Test_Blocks extends WP_UnitTestCase {
 	/**
 	 * Blocks instance
 	 *
-	 * @var Blocks
+	 * @since 1.0.0
+	 * @var   Blocks
 	 */
 	public $instance;
 
 	/**
 	 * Setup
+	 *
+	 * @since 1.0.0
 	 */
 	public function setUP() {
 		parent::setUp();
@@ -31,6 +36,8 @@ class Test_Blocks extends WP_UnitTestCase {
 
 	/**
 	 * Test __construct()
+	 *
+	 * @since 1.0.0
 	 *
 	 * @covers AJAX_Posts_Block\Blocks::__construct()
 	 */
@@ -51,6 +58,8 @@ class Test_Blocks extends WP_UnitTestCase {
 
 	/**
 	 * Test do_asset_registration()
+	 *
+	 * @since 1.0.0
 	 *
 	 * @covers AJAX_Posts_Block\Blocks::do_asset_registration()
 	 */
@@ -156,6 +165,8 @@ class Test_Blocks extends WP_UnitTestCase {
 
 	/**
 	 * Test enqueue_editor_assets()
+	 *
+	 * @since 1.0.0
 	 *
 	 * @covers AJAX_Posts_Block\Blocks::enqueue_editor_assets()
 	 */
