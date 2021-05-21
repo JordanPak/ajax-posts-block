@@ -45,7 +45,12 @@ class Test_Posts extends WP_UnitTestCase {
 	 */
 	public function test_do_meta_registration() {
 		$this->instance->do_meta_registration();
-		$this->assertArrayHasKey( 'apb_read_time', get_registered_meta_keys( 'post' ) );
+
+		$this->assertArrayHasKey(
+			'apb_read_time',
+			get_registered_meta_keys( 'post' ),
+			'apb_read_time post meta key is not registered.'
+		);
 	}
 
 	/**
@@ -70,6 +75,10 @@ class Test_Posts extends WP_UnitTestCase {
 			]
 		);
 
-		$this->assertSame( '100', get_post_meta( $post_id, 'apb_read_time', true ) );
+		$this->assertSame(
+			100,
+			get_post_meta( $post_id, 'apb_read_time', true ),
+			'Page post\'s apb_read_time meta should be "100".'
+		);
 	}
 }
