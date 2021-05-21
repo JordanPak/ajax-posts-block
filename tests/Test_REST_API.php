@@ -67,7 +67,11 @@ class Test_REST_API extends WP_UnitTestCase {
 		$default_args    = $this->instance->set_post_types( [], $default_request );
 
 		if ( ! empty( $default_args['post_type'] ) ) {
-			$this->assertNotContains( 'page', $default_args['post_type'] );
+			$this->assertNotContains(
+				'page',
+				$default_args['post_type'],
+				'Improper post types are in /posts endpoint arguments.'
+			);
 		}
 
 		// Make sure a non-default post type (page) is included when passing in
@@ -76,7 +80,12 @@ class Test_REST_API extends WP_UnitTestCase {
 		$flagged_request->set_param( 'apb_query', true );
 
 		$flagged_args = $this->instance->set_post_types( [], $flagged_request );
-		$this->assertContains( 'page', $flagged_args['post_type'] );
+
+		$this->assertContains(
+			'page',
+			$flagged_args['post_type'],
+			'apb_query flag is not resulting in extra /posts endpoint post type arguments.'
+		);
 	}
 
 	/**
@@ -115,7 +124,8 @@ class Test_REST_API extends WP_UnitTestCase {
 					$default_response->get_data(),
 					[ 'slug' => 'this-isnt-in-posts-by-default' ]
 				)
-			)
+			),
+			'Default /posts endpoint is including non-post types without the apb_query param.'
 		);
 
 		// Make sure the page IS in a /posts response with apb flag.
@@ -127,7 +137,8 @@ class Test_REST_API extends WP_UnitTestCase {
 		$this->assertTrue(
 			count(
 				wp_list_pluck( $flagged_response->get_data(), 'type' )
-			) > 1
+			) > 1,
+			'/posts endpoint is not including additional post types when supplied apb_query param.'
 		);
 	}
 }
