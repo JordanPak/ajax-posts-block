@@ -8,8 +8,6 @@
 
 namespace AJAX_Posts_Block;
 
-use function AJAX_Posts_Block\get_block_template;
-
 // exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
