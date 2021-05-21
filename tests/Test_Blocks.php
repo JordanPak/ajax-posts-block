@@ -45,7 +45,6 @@ class Test_Blocks extends WP_UnitTestCase {
 		$this->assertTrue( $registry->is_registered( 'ajax-posts-block/posts' ) );
 	}
 
-
 	/**
 	 * Test do_asset_registration()
 	 *
@@ -86,5 +85,16 @@ class Test_Blocks extends WP_UnitTestCase {
 		$this->assertEquals( 'ajax-posts-block-blocks', $public_style->handle );
 		$this->assertEmpty( $public_style->deps );
 		$this->assertNotEmpty( $public_style->ver );
+	}
+
+	/**
+	 * Test enqueue_editor_assets()
+	 *
+	 * @covers AJAX_Posts_Block\Blocks::enqueue_editor_assets()
+	 */
+	public function test_enqueue_editor_assets() {
+		do_action( 'enqueue_block_editor_assets' );
+		$this->assertTrue( wp_script_is( 'ajax-posts-block-editor', 'enqueued' ) );
+		$this->assertTrue( wp_style_is( 'ajax-posts-block-editor', 'enqueued' ) );
 	}
 }
