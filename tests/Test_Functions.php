@@ -58,7 +58,8 @@ class Test_Functions extends WP_UnitTestCase {
 	 */
 	public function test_get_icon() {
 
-		$this->assertNotEmpty(
+		$this->assertStringEqualsFile(
+			AJAX_POSTS_BLOCK_DIR . 'src/icons/loading.svg',
 			get_icon( 'loading' ),
 			'SVG icon source getter is failing.'
 		);
