@@ -30,17 +30,18 @@ class Test_Plugin extends WP_UnitTestCase {
 		$this->instance->init();
 	}
 
+	/**
+	 * Test init()
+	 *
+	 * @covers AJAX_Posts_Block\Plugin::init()
+	 */
+	public function test_init() {
+		$reflection_plugin = new ReflectionObject( $this->instance );
+		$blocks_property   = $reflection_plugin->getProperty( 'blocks' );
 
-	// /**
-	//  * Test init()
-	//  *
-	//  * @covers AJAX_Posts_Block\Plugin::init()
-	//  */
-	// public function test_init() {
-	// 	$plugin_instance = new Plugin();
-	// 	$plugin_instance->init();
-	// 	var_dump( did_action( 'ajax_posts_block_loaded' ) );
+		$blocks_property->setAccessible( true );
+		$blocks_class = $blocks_property->getValue( $this->instance );
 
-	// 	// $this->assertEquals( 10,  )
-	// }
+		$this->assertEquals( 'AJAX_Posts_Block\Blockskrik', get_class( $blocks_class ) );
+	}
 }
