@@ -20,6 +20,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+define( 'AJAX_POSTS_BLOCK_VERSION', '1.0.0' );
+define( 'AJAX_POSTS_BLOCK_DIR', plugin_dir_path( __FILE__ ) );
+define( 'AJAX_POSTS_BLOCK_URL', plugin_dir_url( __FILE__ ) );
+
 // Get autoloader and helper functions.
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/src/functions.php';
@@ -86,22 +90,10 @@ class Plugin {
 	 * @since 1.0.0
 	 */
 	public function __construct() {
-		$this->set_constants();
 		add_action( 'plugins_loaded', [ $this, 'init' ] );
 		add_action( 'ajax_posts_block_activate', [ $this, 'init' ], 5 );
 		add_action( 'ajax_posts_block_activate', 'flush_rewrite_rules' ); // @todo probably not needed.
 		add_action( 'ajax_posts_block_deactivate', 'flush_rewrite_rules' ); // @todo probably not needed.
-	}
-
-	/**
-	 * Set constants
-	 *
-	 * @since 1.0.0
-	 */
-	private function set_constants() {
-		define( 'AJAX_POSTS_BLOCK_VERSION', '1.0.0' );
-		define( 'AJAX_POSTS_BLOCK_DIR', plugin_dir_path( __FILE__ ) );
-		define( 'AJAX_POSTS_BLOCK_URL', plugin_dir_url( __FILE__ ) );
 	}
 
 	/**
