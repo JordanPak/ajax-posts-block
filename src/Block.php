@@ -59,7 +59,7 @@ class Block {
 	public function do_registration() {
 
 		register_block_type(
-			"full-score-events/{$this->name}",
+			"ajax-posts-block/{$this->name}",
 			array_filter(
 				[
 					'editor_script'   => Blocks::EDITOR_ASSET_HANDLE,

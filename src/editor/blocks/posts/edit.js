@@ -22,7 +22,7 @@ export default function Edit( { attributes, setAttributes } ) {
 		<>
 			<InspectorControls>
 				<PanelBody
-					title={ __( 'Sorting and filtering', 'full-score-events' ) }
+					title={ __( 'Sorting and filtering', 'ajax-posts-block' ) }
 				>
 					<RangeControl
 						label={ __( 'Number of items', 'ajax-posts-block' ) }
