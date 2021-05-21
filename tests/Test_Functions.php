@@ -64,4 +64,22 @@ class Test_Functions extends WP_UnitTestCase {
 			'SVG icon source getter is failing.'
 		);
 	}
+
+	/**
+	 * Test do_icon()
+	 *
+	 * @since 1.0.0
+	 *
+	 * @covers AJAX_Posts_Block\do_icon()
+	 */
+	public function test_do_icon() {
+		ob_start();
+		do_icon( 'loading' );
+
+		$this->assertStringEqualsFile(
+			AJAX_POSTS_BLOCK_DIR . 'src/icons/loading.svg',
+			ob_get_clean(),
+			'SVG icon inliner is failing to load and output source.'
+		);
+	}
 }
