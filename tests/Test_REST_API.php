@@ -78,4 +78,56 @@ class Test_REST_API extends WP_UnitTestCase {
 		$flagged_args = $this->instance->set_post_types( [], $flagged_request );
 		$this->assertContains( 'page', $flagged_args['post_type'] );
 	}
+
+	/**
+	 * Test inclusion of posts of additional types in /posts query
+	 *
+	 * @covers AJAX_Posts_Block\REST_API::set_post_types()
+	 */
+	public function test_apb_query_posts_response() {
+
+		// Insert a test post @see Pirates of the Caribbean.
+		$this->factory->post->create(
+			[
+				'post_title'   => 'Why, thank you, Jack',
+				'post_content' => 'No, the <em>monkey</em> Jack.',
+			]
+		);
+
+		// Insert a test page.
+		$this->factory->post->create(
+			[
+				'post_type'    => 'page',
+				'post_title'   => "This isn't in /posts by default",
+				'post_content' => "The /posts endpoint normally doesn't include pages.",
+			]
+		);
+
+		// Make sure the page isn't in a normal /posts response.
+		$default_request  = new \WP_REST_Request( 'GET', '/wp/v2/posts' );
+		$default_response = $this->server->dispatch( $default_request );
+
+		$this->assertSame( 200, $default_response->get_status() );
+		$this->assertSame(
+			0,
+			count(
+				wp_list_filter(
+					$default_response->get_data(),
+					[ 'slug' => 'this-isnt-in-posts-by-default' ]
+				)
+			)
+		);
+
+		// Make sure the page IS in a /posts response with apb flag.
+		$flagged_request = new \WP_REST_Request( 'GET', '/wp/v2/posts' );
+		$flagged_request->set_param( 'apb_query', true );
+		$flagged_response = $this->server->dispatch( $flagged_request );
+
+		$this->assertSame( 200, $flagged_response->get_status() );
+		$this->assertTrue(
+			count(
+				wp_list_pluck( $flagged_response->get_data(), 'type' )
+			) > 1
+		);
+	}
 }
