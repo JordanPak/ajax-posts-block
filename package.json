@@ -11,7 +11,9 @@
 		"lint:css": "wp-scripts lint-style",
 		"lint:js": "wp-scripts lint-js",
 		"test:e2e": "wp-scripts test-e2e --config=tests/e2e/jest.config.js --runInBand",
-		"test:unit": "wp-scripts test-unit-js",
+		"test:unit": "wp-scripts test-unit-js --config=jest.config.js",
+		"test:unit:watch": "wp-scripts test-unit-js --watch --runInBand --verbose=true",
+		"test:unit:debug": "wp-scripts --inspect-brk test-unit-js --runInBand --no-cache",
 		"packages-update": "wp-scripts packages-update"
 	},
 	"devDependencies": {
@@ -19,6 +21,7 @@
 		"@wordpress/env": "^4.0.4",
 		"@wordpress/icons": "^2.8.0",
 		"@wordpress/scripts": "^12.5.0",
+		"enzyme": "^3.11.0",
 		"html-entities": "^1.4.0",
 		"lodash": "^4.17.21",
 		"react-select": "^4.3.0"
