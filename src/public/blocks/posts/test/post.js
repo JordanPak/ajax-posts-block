@@ -65,4 +65,20 @@ describe( 'Post Compoonent', () => {
 
 		expect( post ).toMatchSnapshot();
 	} );
+
+	it( 'Excludes read time meta if 0', () => {
+		const post = shallow(
+			<Post
+				title={ { rendered: 'Jimbo Fisher' } }
+				link="https://www.example.com"
+				embeds={ {
+					author: [ { name: 'Captain Jack Sparrow' } ],
+				} }
+				readTime={ 0 }
+				numberFormatter={ new Intl.NumberFormat( 'en-US' ) }
+			/>
+		).render();
+
+		expect( post ).toMatchSnapshot();
+	} );
 } );
