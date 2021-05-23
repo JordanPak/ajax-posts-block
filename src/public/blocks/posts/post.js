@@ -60,7 +60,7 @@ export default ( {
 						</span>
 					) }
 				</div>
-				{ excerpt.rendered && (
+				{ excerpt && excerpt.rendered && (
 					<RawHTML className="apb-post-excerpt">
 						{ excerpt.rendered }
 					</RawHTML>
