@@ -46,4 +46,23 @@ describe( 'Post Compoonent', () => {
 
 		expect( post ).toMatchSnapshot();
 	} );
+
+	it( 'Shows a post without media or read time correctly', () => {
+		const post = shallow(
+			<Post
+				title={ { rendered: 'Jimbo Fisher' } }
+				link="https://www.example.com"
+				excerpt={ {
+					rendered:
+						'<p>John James "Jimbo" Fisher Jr. is an American college football coach and former player.</p>',
+				} }
+				embeds={ {
+					author: [ { name: 'Captain Jack Sparrow' } ],
+				} }
+				numberFormatter={ new Intl.NumberFormat( 'en-US' ) }
+			/>
+		).render();
+
+		expect( post ).toMatchSnapshot();
+	} );
 } );
