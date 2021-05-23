@@ -2,22 +2,30 @@ import {
 	activatePlugin,
 	createNewPost,
 	deactivatePlugin,
+	enablePageDialogAccept,
+	getEditedPostContent,
 	insertBlock,
+	trashAllPosts,
 } from '@wordpress/e2e-test-utils';
 
 describe( 'AJAX Posts Block', () => {
-	// beforeEach( async () => {
-	// 	jest.setTimeout( 25000 );
-	// 	await activatePlugin( 'ajax-posts-block' );
-	// 	// await createNewPost();
-	// } );
+	// activate the plugin and go to a new post edit screen
+	beforeEach( async () => {
+		await activatePlugin( 'ajax-posts-block' );
+		await createNewPost();
+	} );
 
-	// afterEach( async () => {
-	// 	await deactivatePlugin( 'ajax-posts-block' );
-	// } );
+	// clear out new post dialogs
+	beforeAll( async () => {
+		await enablePageDialogAccept();
+	} );
+
+	// cleanup: deactivate plugin
+	afterEach( async () => {
+		await deactivatePlugin( 'ajax-posts-block' );
+	} );
 
 	it( 'Can be added', async () => {
-		await createNewPost();
 		await insertBlock( 'Posts' );
 
 		// make sure it was inserted
@@ -25,6 +33,8 @@ describe( 'AJAX Posts Block', () => {
 			await page.$( '[data-type="ajax-posts-block/posts"]' )
 		).not.toBeNull();
 
-		// expect( 2 + 1 ).toEqual( 3 );
+		// and that it matches the snapshot
+		expect( await getEditedPostContent() ).toMatchSnapshot();
+	} );
 	} );
 } );
