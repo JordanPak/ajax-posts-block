@@ -35,22 +35,16 @@ const trashPosts = async () => {
 };
 
 describe( 'AJAX Posts Block', () => {
-	beforeEach( async () => {
-		await activatePlugin( 'ajax-posts-block' );
-	} );
-
 	// make sure editor dialogs are skipped and posts/pages are reset
 	beforeAll( async () => {
+		await activatePlugin( 'ajax-posts-block' );
 		await enablePageDialogAccept();
 		await trashPosts();
 	} );
 
-	afterEach( async () => {
-		await deactivatePlugin( 'ajax-posts-block' );
-	} );
-
 	afterAll( async () => {
 		await trashPosts();
+		await deactivatePlugin( 'ajax-posts-block' );
 	} );
 
 	it( 'Can be added', async () => {
@@ -86,5 +80,5 @@ describe( 'AJAX Posts Block', () => {
 			'APB Demo Page',
 			'APB Demo Post',
 		] );
-	}, 45000 ); // Demo post takes a really, really, really long time :\
+	}, 60000 ); // Demo post creation takes sooooooooo long :(
 } );
