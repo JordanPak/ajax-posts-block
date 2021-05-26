@@ -1,6 +1,6 @@
 {
 	"name": "ajax-posts-block/ajax-posts-block",
-	"description": "WordPress editor block that displays a user-defined number of posts by category and/or tag.",
+	"description": "WordPress editor block that displays a user-defined number of posts by category, tag, and/or type.",
 	"type": "project",
 	"authors": [
 		{
