@@ -20,12 +20,12 @@ let isFetching = false;
 /**
  * Get result from API and format for react-select options
  *
+ * @since 1.0.0
+ *
  * @param {string}   endpoint  REST API endpoint
  * @param {string}   search    searched value
  * @param {callback} callback  link back to react-select
  * @param {string}   namespace namespace for endpoint (defaults to WP V2)
- *
- * @since 1.0.0
  */
 const getApiOptions = ( endpoint, search, callback, namespace = 'wp/v2' ) => {
 	// cut off existing API fetch and set up a new abort controller.
