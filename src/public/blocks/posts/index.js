@@ -47,7 +47,7 @@ class AJAXPostsBlock extends Component {
 	 * @since 1.0.0
 	 */
 	doHeightCheck() {
-		// sanity-check height sensor and skip minimum height on small screens
+		// Sanity-check height sensor and skip minimum height on small screens.
 		if ( ! this.heightSensor || window.innerWidth < 850 ) {
 			return;
 		}
@@ -62,6 +62,8 @@ class AJAXPostsBlock extends Component {
 
 	/**
 	 * Check if new posts need to be fetched
+	 *
+	 * @since 1.0.0
 	 *
 	 * @param {Object} prevProps Props before state was changed.
 	 * @param {*} prevState State before state was changed.
@@ -89,15 +91,17 @@ class AJAXPostsBlock extends Component {
 	 * @return {Object} Loader react element.
 	 */
 	renderLoader() {
+		const { loadingEl } = this.props;
+
 		// If the loading element property has its own properties, it's the
 		// element from the editor view and can be rendered out as-is.
-		return this.props.loadingEl.props ? (
-			this.props.loadingEl
+		return loadingEl.props ? (
+			loadingEl
 		) : (
 			<p
-				className={ this.props.loadingEl.className }
+				className={ loadingEl.className }
 				dangerouslySetInnerHTML={ {
-					__html: this.props.loadingEl.innerHTML,
+					__html: loadingEl.innerHTML,
 				} }
 			/>
 		);
@@ -190,13 +194,15 @@ class AJAXPostsBlock extends Component {
 	/**
 	 * Render out posts with navigation or "none found" message.
 	 *
+	 * @since 1.0.0
+	 *
 	 * @return {Object} Posts + pagination or "none" message react element.
 	 */
 	renderPosts() {
 		const { posts, currentPage, totalPages } = this.state;
 
 		if ( posts.length > 0 ) {
-			// So we don't have to make it a bunch of times
+			// Outside map so we don't have to make it a bunch of times.
 			const numberFormatter = new Intl.NumberFormat( 'en-US' );
 
 			return (

@@ -7,7 +7,12 @@ import { shallow } from 'enzyme';
 
 import Post from '../post';
 
-global.apbHelper = { i18n: { by: 'by' } };
+global.apbHelper = {
+	i18n: {
+		by: 'by',
+		minuteReadTime: '%s minute read time',
+	},
+};
 
 describe( 'Post Compoonent', () => {
 	it( 'Shows post with all features correctly', () => {

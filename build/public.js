@@ -541,7 +541,7 @@ var AJAXPostsBlock = /*#__PURE__*/function (_Component) {
   }, {
     key: "doHeightCheck",
     value: function doHeightCheck() {
-      // sanity-check height sensor and skip minimum height on small screens
+      // Sanity-check height sensor and skip minimum height on small screens.
       if (!this.heightSensor || window.innerWidth < 850) {
         return;
       } // Set initial minimum height so paging is less jarring.
@@ -557,6 +557,8 @@ var AJAXPostsBlock = /*#__PURE__*/function (_Component) {
     }
     /**
      * Check if new posts need to be fetched
+     *
+     * @since 1.0.0
      *
      * @param {Object} prevProps Props before state was changed.
      * @param {*} prevState State before state was changed.
@@ -583,12 +585,13 @@ var AJAXPostsBlock = /*#__PURE__*/function (_Component) {
   }, {
     key: "renderLoader",
     value: function renderLoader() {
-      // If the loading element property has its own properties, it's the
+      var loadingEl = this.props.loadingEl; // If the loading element property has its own properties, it's the
       // element from the editor view and can be rendered out as-is.
-      return this.props.loadingEl.props ? this.props.loadingEl : Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("p", {
-        className: this.props.loadingEl.className,
+
+      return loadingEl.props ? loadingEl : Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("p", {
+        className: loadingEl.className,
         dangerouslySetInnerHTML: {
-          __html: this.props.loadingEl.innerHTML
+          __html: loadingEl.innerHTML
         }
       });
     }
@@ -686,6 +689,8 @@ var AJAXPostsBlock = /*#__PURE__*/function (_Component) {
     /**
      * Render out posts with navigation or "none found" message.
      *
+     * @since 1.0.0
+     *
      * @return {Object} Posts + pagination or "none" message react element.
      */
 
@@ -698,7 +703,7 @@ var AJAXPostsBlock = /*#__PURE__*/function (_Component) {
           totalPages = _this$state.totalPages;
 
       if (posts.length > 0) {
-        // So we don't have to make it a bunch of times
+        // Outside map so we don't have to make it a bunch of times.
         var numberFormatter = new Intl.NumberFormat('en-US');
         return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("ul", {
           className: "apb-posts-list"
@@ -855,8 +860,7 @@ __webpack_require__.r(__webpack_exports__);
     className: "apb-post-author"
   }, apbHelper.i18n.by, ' ', embeds.author[0].name)), readTime > 0 && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", {
     className: "apb-read-time"
-  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["sprintf"])( // Translators: %s minute read time.
-  Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('%s minute read time', 'ajax-posts-block'), numberFormatter.format(readTime)))), excerpt && excerpt.rendered && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["RawHTML"], {
+  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["sprintf"])(apbHelper.i18n.minuteReadTime, numberFormatter.format(readTime)))), excerpt && excerpt.rendered && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["RawHTML"], {
     className: "apb-post-excerpt"
   }, excerpt.rendered)));
 });

@@ -2,7 +2,7 @@
 /**
  * Plugin Name: AJAX Posts Block
  * Plugin URI: https://wpengine.com/
- * Description: Editor block that displays a user-defined number of posts by category and/or tag.
+ * Description: Editor block that displays a user-defined number of posts by category, tag, and/or type.
  * Author: capital_w_dangit
  * Author URI: https://capital-w-dangit.test
  * Version: 1.0.0
@@ -85,7 +85,7 @@ class Plugin {
 	}
 
 	/**
-	 * Spin up plugin
+	 * Hook plugin in
 	 *
 	 * @since 1.0.0
 	 */
@@ -104,6 +104,9 @@ class Plugin {
 		$this->rest_api = new REST_API();
 		$this->posts    = new Posts();
 
+		/**
+		 * Hook: ajax_posts_block_loaded
+		 */
 		do_action( 'ajax_posts_block_loaded' );
 	}
 
@@ -113,6 +116,11 @@ class Plugin {
 	 * @since 1.0.0
 	 */
 	public function do_activate() {
+		/**
+		 * Hook: ajax_posts_block_activate
+		 *
+		 * @hooked AJAX_Posts_Block\init - 5
+		 */
 		do_action( 'ajax_posts_block_activate' );
 	}
 
@@ -122,6 +130,9 @@ class Plugin {
 	 * @since 1.0.0
 	 */
 	public function do_deactivate() {
+		/**
+		 * Hook: ajax_posts_block_deactivate
+		 */
 		do_action( 'ajax_posts_block_deactivate' );
 	}
 }
