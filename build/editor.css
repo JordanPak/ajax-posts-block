@@ -1,17 +1,1 @@
-/**
- * Editor adjustments/fixes for global styling
- *
- * @since 1.0.0
- */
-.editor-styles-wrapper .apb-post-excerpt p,
-.editor-styles-wrapper .apb-posts-list {
-  margin: 0;
-}
-.editor-styles-wrapper .apb-posts-list {
-  padding: 0;
-}
-.editor-styles-wrapper .wp-block .apb-post-title {
-  margin: 0;
-}
-
-/*# sourceMappingURL=editor.css.map*/
+.editor-styles-wrapper .apb-post-excerpt p,.editor-styles-wrapper .apb-posts-list{margin:0}.editor-styles-wrapper .apb-posts-list{padding:0}.editor-styles-wrapper .wp-block .apb-post-title{margin:0}
