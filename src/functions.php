@@ -9,56 +9,6 @@
 namespace AJAX_Posts_Block;
 
 /**
- * Get a plugin template
- *
- * @since 1.0.0
- *
- * @param string $slug  Template slug (excluding .php).
- * @param array  $args  Template arguments (extracted to vars).
- */
-function get_plugin_template( $slug, $args = [] ) {
-
-	// Make vars for all the args.
-	if ( ! empty( $args ) && is_array( $args ) ) {
-		extract( $args ); // phpcs:ignore WordPress.PHP.DontExtract.extract_extract
-	}
-
-	include AJAX_POSTS_BLOCK_DIR . "/src/templates/{$slug}.php";
-}
-
-/**
- * Get a dynamic block template
- *
- * @since 1.0.0
- *
- * @param string $name  Block template part name (excluding .php).
- * @param array  $args  Template arguments (extracted to vars).
- */
-function get_block_template( $name, $args = [] ) {
-	ob_start();
-
-	/**
-	 * Hook: ajax_posts_block_before_block
-	 *
-	 * @param string $name Block template part name (excluding .php).
-	 * @param array  $args Template arguments (extracted to vars).
-	 */
-	do_action( 'ajax_posts_block_before_block', $name, $args );
-
-	get_plugin_template( $name, $args );
-
-	/**
-	 * Hook: ajax_posts_block_after_block
-	 *
-	 * @param string $name Block template part name (excluding .php).
-	 * @param array  $args Template arguments (extracted to vars).
-	 */
-	do_action( 'ajax_posts_block_after_block', $name, $args );
-
-	return ob_get_clean();
-}
-
-/**
  * Wrapper for edit_posts capability check
  *
  * @since 1.0.0

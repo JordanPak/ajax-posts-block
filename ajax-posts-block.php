@@ -20,6 +20,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+define( 'AJAX_POSTS_BLOCK_VERSION', '1.0.0' );
+define( 'AJAX_POSTS_BLOCK_DIR', plugin_dir_path( __FILE__ ) );
+define( 'AJAX_POSTS_BLOCK_URL', plugin_dir_url( __FILE__ ) );
+
 // Get autoloader and helper functions.
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/src/functions.php';
@@ -86,22 +90,8 @@ class Plugin {
 	 * @since 1.0.0
 	 */
 	public function __construct() {
-		$this->set_constants();
 		add_action( 'plugins_loaded', [ $this, 'init' ] );
 		add_action( 'ajax_posts_block_activate', [ $this, 'init' ], 5 );
-		add_action( 'ajax_posts_block_activate', 'flush_rewrite_rules' ); // @todo probably not needed.
-		add_action( 'ajax_posts_block_deactivate', 'flush_rewrite_rules' ); // @todo probably not needed.
-	}
-
-	/**
-	 * Set constants
-	 *
-	 * @since 1.0.0
-	 */
-	private function set_constants() {
-		define( 'AJAX_POSTS_BLOCK_VERSION', '1.0.0' );
-		define( 'AJAX_POSTS_BLOCK_DIR', plugin_dir_path( __FILE__ ) );
-		define( 'AJAX_POSTS_BLOCK_URL', plugin_dir_url( __FILE__ ) );
 	}
 
 	/**
@@ -114,37 +104,7 @@ class Plugin {
 		$this->rest_api = new REST_API();
 		$this->posts    = new Posts();
 
-		// if ( $this->is_request( 'frontend' ) ) {
-		// 	$this->template_loader = new Template_Loader();
-		// 	$this->template_hooks  = new Template_Hooks();
-		// }
-
 		do_action( 'ajax_posts_block_loaded' );
-	}
-
-	/**
-	 * What type of request is this?
-	 *
-	 * @since 1.0.0
-	 * @see   WooCommerce's WooCommerce->is_request()
-	 *
-	 * @param  string $type  admin, ajax, cron or frontend.
-	 * @return boolean
-	 */
-	private function is_request( $type ) {
-		switch ( $type ) {
-			case 'admin':
-				return is_admin();
-
-			case 'ajax':
-				return defined( 'DOING_AJAX' );
-
-			case 'cron':
-				return defined( 'DOING_CRON' );
-
-			case 'frontend':
-				return ( ! is_admin() || defined( 'DOING_AJAX' ) ) && ! defined( 'DOING_CRON' );
-		}
 	}
 
 	/**
