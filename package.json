@@ -14,8 +14,7 @@
         "test:e2e:debug": "wp-scripts --inspect-brk test-e2e --config=tests/e2e/jest.config.js --runInBand",
 		"test:unit": "wp-scripts test-unit-js --config=jest.config.js",
 		"test:unit:watch": "wp-scripts test-unit-js --watch --runInBand --verbose=true",
-		"test:unit:debug": "wp-scripts --inspect-brk test-unit-js --runInBand --no-cache",
-		"packages-update": "wp-scripts packages-update"
+		"test:unit:debug": "wp-scripts --inspect-brk test-unit-js --runInBand --no-cache"
 	},
 	"devDependencies": {
 		"@wordpress/data": "^5.1.0",
