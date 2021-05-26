@@ -20,6 +20,7 @@ Features:
 * Filter to specific categories and post tags
 * Default and wide (with columns) block alignment support
 * Forward/back paging without page reload
+* "Read time" (custom meta) can be set for a post in the editor's sidebar, which will be conditionally displayed in the byline for each post listed by the block
 
 == Installation ==
 
