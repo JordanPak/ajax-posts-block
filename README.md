@@ -34,7 +34,7 @@ The setup here is somewhat dependent on your environment.
 1. Do "Contributing" steps above.
 1. Install [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/).
 1. Make sure your Docker service is running. Some Debian Linux distributions may not have a typical `init` or  `systemd` and need `sudo service docker start`. You may also need to [allow your user to use docker](https://docs.docker.com/engine/install/linux-postinstall/).
-1. Run `npm env:start`. If you don't already have WordPress testing dependencies installed, you may have to execute the `bin/install-wp-tests.sh` script (ex: `bash bin/install-wp-tests.sh`).
+1. Run `npm run env:start`. If you don't already have WordPress testing dependencies installed, you may have to execute the `bin/install-wp-tests.sh` script (ex: `bash bin/install-wp-tests.sh`).
 1. Run `composer run-script test` for PHP unit and integration tests. [Some tests may need their snapshots updated](https://jestjs.io/docs/snapshot-testing), depending on the changes that are made.
-1. Run `npm run test:e2e` for JavaScript end-to-end tests.
+1. Run `npm run test:e2e` for JavaScript end-to-end tests. If you get issues loading the puppeteer module, run `npm cache clean --force`, delete the `node_modules` folder, then run `npm install` ([Trac #52843](https://core.trac.wordpress.org/ticket/52843)).
 1. Run `npm run test:unit` for JavaScript unit tests.
