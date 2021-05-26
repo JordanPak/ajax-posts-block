@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Post Compoonent Excludes read time meta if 0 1`] = `
+<a
+  class="apb-post"
+  href="https://www.example.com"
+>
+  <div
+    class="apb-post-details"
+  >
+    <h3
+      class="apb-post-title"
+    >
+      Jimbo Fisher
+    </h3>
+    <div
+      class="apb-post-meta"
+    >
+      <span
+        class="apb-post-author"
+      >
+        by Captain Jack Sparrow
+      </span>
+    </div>
+  </div>
+</a>
+`;
+
+exports[`Post Compoonent Shows a post without media or read time correctly 1`] = `
+<a
+  class="apb-post"
+  href="https://www.example.com"
+>
+  <div
+    class="apb-post-details"
+  >
+    <h3
+      class="apb-post-title"
+    >
+      Jimbo Fisher
+    </h3>
+    <div
+      class="apb-post-meta"
+    >
+      <span
+        class="apb-post-author"
+      >
+        by Captain Jack Sparrow
+      </span>
+    </div>
+    <div
+      class="apb-post-excerpt"
+    >
+      <p>
+        John James "Jimbo" Fisher Jr. is an American college football coach and former player.
+      </p>
+    </div>
+  </div>
+</a>
+`;
+
+exports[`Post Compoonent Shows post with all features correctly 1`] = `
+<a
+  class="apb-post"
+  href="https://www.example.com"
+>
+  <img
+    alt="Thumbnail alt text"
+    class="apb-post-thumbnail"
+    height="200"
+    src="thumbnail.jpg"
+    width="400"
+  />
+  <div
+    class="apb-post-details"
+  >
+    <h3
+      class="apb-post-title"
+    >
+      Jimbo Fisher
+    </h3>
+    <div
+      class="apb-post-meta"
+    >
+      <span
+        class="apb-post-author"
+      >
+        by Captain Jack Sparrow
+      </span>
+      <span
+        class="apb-read-time"
+      >
+        17 minute read time
+      </span>
+    </div>
+    <div
+      class="apb-post-excerpt"
+    >
+      <p>
+        John James "Jimbo" Fisher Jr. is an American college football coach and former player.
+      </p>
+    </div>
+  </div>
+</a>
+`;

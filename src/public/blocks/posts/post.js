@@ -45,7 +45,8 @@ export default ( {
 					{ embeds.author.length > 0 && (
 						<>
 							<span className="apb-post-author">
-								by { embeds.author[ 0 ].name }
+								{ apbHelper.i18n.by }{ ' ' }
+								{ embeds.author[ 0 ].name }
 							</span>
 						</>
 					) }
@@ -59,7 +60,7 @@ export default ( {
 						</span>
 					) }
 				</div>
-				{ excerpt.rendered && (
+				{ excerpt && excerpt.rendered && (
 					<RawHTML className="apb-post-excerpt">
 						{ excerpt.rendered }
 					</RawHTML>
