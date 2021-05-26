@@ -91,10 +91,12 @@ class Blocks {
 			'apbHelper',
 			[
 				'i18n'  => [
-					'noResults' => __( "There isn't anything to see right now.", 'ajax-posts-block' ),
-					'previous'  => __( 'Older', 'ajax-posts-block' ),
-					'next'      => __( 'Newer', 'ajax-posts-block' ),
-					'by'        => _x( 'by', 'post-byline', 'ajax-posts-block' ),
+					'noResults'      => __( "There isn't anything to see right now.", 'ajax-posts-block' ),
+					'previous'       => __( 'Older', 'ajax-posts-block' ),
+					'next'           => __( 'Newer', 'ajax-posts-block' ),
+					'by'             => _x( 'by', 'post-byline', 'ajax-posts-block' ),
+					// Translators: %s minute read time.
+					'minuteReadTime' => __( '%s minute read time', 'ajax-posts-block' ),
 				],
 				'types' => wp_list_pluck( get_post_types( [ 'show_in_rest' => true ], 'objects' ), 'label' ),
 			]

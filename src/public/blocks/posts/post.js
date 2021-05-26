@@ -4,7 +4,7 @@
  * @since 1.0.0
  */
 
-import { __, sprintf } from '@wordpress/i18n';
+import { sprintf } from '@wordpress/i18n';
 import { RawHTML } from '@wordpress/element';
 
 export default ( {
@@ -52,9 +52,9 @@ export default ( {
 					) }
 					{ readTime > 0 && (
 						<span className="apb-read-time">
+							{ /* eslint-disable-next-line @wordpress/valid-sprintf */ }
 							{ sprintf(
-								// Translators: %s minute read time.
-								__( '%s minute read time', 'ajax-posts-block' ),
+								apbHelper.i18n.minuteReadTime,
 								numberFormatter.format( readTime )
 							) }
 						</span>
