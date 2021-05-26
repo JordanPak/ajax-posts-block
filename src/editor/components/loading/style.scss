@@ -18,4 +18,9 @@
 	padding: var(--apb-bsu-x2);
 	text-align: center;
 	font-weight: 600;
+
+	// keep the loader higher up
+	@media (min-width: 850px) {
+		max-height: 400px;
+	}
 }
